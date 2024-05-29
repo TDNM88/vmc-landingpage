@@ -1,96 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu ứng dụng VMC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">VMC</div>
+            <nav>
+                <a href="#steps" class="nav-button"><img src="https://cdn-uploads.huggingface.co/production/uploads/64e5535467a759dd7143007b/mwHB6A5lbrL9IGZgcOMT-.png" alt="Steps"></a>
+                <a href="#contact" class="nav-button"><img src="https://lf16-alice-tos-sign.oceanapi-i18n.com/obj/ocean-cloud-tos-sg/FileBizType.BIZ_BOT_ICON/7334556397025330178_1710719392531796777.jpeg?lk3s=50ccb0c5&x-expires=1717043435&x-signature=ChhJQXAKyBZYiQCO2cw3rxEg0lY%3D" alt="Contact"></a>
+            </nav>
+        </div>
+    </header>
+    <header class="hero">
+        <div class="overlay">
+            <h1>Virtual MC</h1>
+            <p>Ứng dụng đa nền tảng cho phép bạn tạo video với MC ảo từ hình ảnh và nội dung tùy chọn, sử dụng giọng nói tiếng Việt tự nhiên.</p>
+            <p>Sản phẩm Made in Vietnam 🇻🇳</p>
+            <div class="email-form">
+                <input type="email" placeholder="Nhập email của bạn">
+                <button>ĐĂNG KÝ SỚM</button>
+            </div>
+            <div class="ratings">
+                <div class="rating-item">
+                    <p class="rating-title">SẢN PHẨM ĐƯỢC CHỜ ĐỢI</p>
+                    <div class="stars">★★★★★</div>
+                    <p>(5.0) trong tổng số 259 reviews</p>
+                </div>
+                <div class="rating-item">
+                    <img src="/pic1.jpg" alt="GitHub">
+                    <p>50,878</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="demo" class="demo-container">
+          <span style="color: white; font-weight: bold;"><h2>VIDEO MẪU</h2></span>
+            <div class="video-slider">
+                <video controls>
+                    <source src="videos/demo1.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+                <video controls>
+                    <source src="videos/demo2.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+                <video controls>
+                    <source src="videos/demo3.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+        </section>
+        <section id="steps" class="steps-container">
+            <div class="step">
+                <h2>Bước 1: Tạo Ảnh</h2>
+                <p>Nhập mô tả về MC và nhấn nút "Tạo Ảnh".</p>
+            </div>
+            <div class="step">
+                <h2>Bước 2: Xây Dựng Nội Dung</h2>
+                <p>Nhập mô tả nội dung và nhấn nút "Tạo Nội Dung".</p>
+            </div>
+            <div class="step">
+                <h2>Bước 3: Phòng Thu</h2>
+                <p>Tải lên file âm thanh tham chiếu hoặc nhập URL âm thanh tham chiếu và nhấn nút "Tạo Âm Thanh".</p>
+            </div>
+            <div class="step">
+                <h2>Bước 4: Tạo Video</h2>
+                <p>Nhấn nút "Tạo Video" để tạo video từ ảnh, nội dung, và âm thanh đã tạo.</p>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Liên hệ</h2>
+            <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ <a href="mailto:dung.ngt1988@gmail.com">dung.ngt1988@gmail.com</a>.</p>
+        </section>
+    </main>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+    <script>
+        new CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7334554882378104833',
+          },
+          componentProps: {
+            title: 'TDNM CUSTOMER SERVICES',
+            icon: 'https://p16-flow-sign-sg.ciciai.com/ocean-cloud-tos-sg/FileBizType.BIZ_BOT_ICON/7334556397025330178_1715387712286469414_mE0PBstXhZ.png~tplv-0es2k971ck-image-qvalue.jpeg?rk3s=bbd3e7ed&x-expires=1719549897&x-signature=uKA3QfTeQTf%2Bbp9nTvT98guHEoE%3D',
+            layout: 'mobile',
+          },
+        });
+    </script>
+    <footer>
+        <p>&copy; 2024 VMC. All rights reserved.</p>
+    </footer>
+</body>
 </html>
