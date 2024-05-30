@@ -25,36 +25,28 @@
     width: 20px;
     height: 20px;
     background-color: orange;
-    animation: moveClockwise 4s linear infinite;
+    animation: moveCounterClockwise 2s linear infinite;
   }
 
   .square.blue {
     background-color: blue;
-    animation: moveCounterClockwise 4s linear infinite;
+    animation: moveClockwise 2s linear infinite;
   }
 
   @keyframes moveClockwise {
-    0% { top: 0; left: 0; transform: scale(1); }
-    12.5% { top: 0; left: 50%; transform: scale(1.5); }
-    25% { top: 0; left: 100%; transform: scale(2); }
-    37.5% { top: 50%; left: 100%; transform: scale(2.5); }
-    50% { top: 100%; left: 100%; transform: scale(3); }
-    62.5% { top: 100%; left: 50%; transform: scale(3.5); }
-    75% { top: 100%; left: 0; transform: scale(4); }
-    87.5% { top: 50%; left: 0; transform: scale(4.5); }
-    100% { top: 0; left: 0; transform: scale(5); }
+    0% { top: 0; left: 0; }
+    25% { top: 0; left: calc(100% - 20px); }
+    50% { top: calc(100% - 20px); left: calc(100% - 20px); }
+    75% { top: calc(100% - 20px); left: 0; }
+    100% { top: 0; left: 0; }
   }
 
   @keyframes moveCounterClockwise {
-    0% { top: 0; left: 100%; transform: scale(1); }
-    12.5% { top: 0; left: 50%; transform: scale(1.5); }
-    25% { top: 0; left: 0; transform: scale(2); }
-    37.5% { top: 50%; left: 0; transform: scale(2.5); }
-    50% { top: 100%; left: 0; transform: scale(3); }
-    62.5% { top: 100%; left: 50%; transform: scale(3.5); }
-    75% { top: 100%; left: 100%; transform: scale(4); }
-    87.5% { top: 50%; left: 100%; transform: scale(4.5); }
-    100% { top: 0; left: 100%; transform: scale(5); }
+    0% { top: 0; left: calc(100% - 20px); }
+    25% { top: 0; left: 0; }
+    50% { top: calc(100% - 20px); left: 0; }
+    75% { top: calc(100% - 20px); left: calc(100% - 20px); }
+    100% { top: 0; left: calc(100% - 20px); }
   }
 
   .line {
@@ -62,12 +54,12 @@
     width: 100vw;
     height: 5px;
     background-color: orange;
-    animation: moveLeft 2s linear infinite;
+    animation: moveLeft 1s linear infinite;
   }
 
   .line.blue {
     background-color: blue;
-    animation: moveRight 2s linear infinite;
+    animation: moveRight 1s linear infinite;
   }
 
   @keyframes moveLeft {
@@ -102,20 +94,37 @@
 </head>
 <body>
 <div class="container">
-  <div class="square" style="animation-delay: 0s;"></div>
-  <div class="square" style="animation-delay: 1s;"></div>
-  <div class="square" style="animation-delay: 2s;"></div>
-  <div class="square" style="animation-delay: 3s;"></div>
+  <!-- Hình vuông màu xanh -->
   <div class="square blue" style="animation-delay: 0s;"></div>
+  <div class="square blue" style="animation-delay: 0.5s;"></div>
   <div class="square blue" style="animation-delay: 1s;"></div>
+  <div class="square blue" style="animation-delay: 1.5s;"></div>
   <div class="square blue" style="animation-delay: 2s;"></div>
+  <div class="square blue" style="animation-delay: 2.5s;"></div>
   <div class="square blue" style="animation-delay: 3s;"></div>
+  <div class="square blue" style="animation-delay: 3.5s;"></div>
+
+  <!-- Hình vuông màu cam -->
+  <div class="square" style="animation-delay: 0s;"></div>
+  <div class="square" style="animation-delay: 0.5s;"></div>
+  <div class="square" style="animation-delay: 1s;"></div>
+  <div class="square" style="animation-delay: 1.5s;"></div>
+  <div class="square" style="animation-delay: 2s;"></div>
+  <div class="square" style="animation-delay: 2.5s;"></div>
+  <div class="square" style="animation-delay: 3s;"></div>
+  <div class="square" style="animation-delay: 3.5s;"></div>
+
+  <!-- Đường màu cam -->
   <div class="line" style="top: 25%;"></div>
   <div class="line" style="top: 50%;"></div>
   <div class="line" style="top: 75%;"></div>
+
+  <!-- Đường màu xanh -->
   <div class="line blue" style="top: 35%;"></div>
   <div class="line blue" style="top: 60%;"></div>
   <div class="line blue" style="top: 85%;"></div>
+
+  <!-- Logo -->
   <div class="logo"></div>
 </div>
 </body>
