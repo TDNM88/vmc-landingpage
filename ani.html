@@ -22,6 +22,10 @@
             left: 0;
         }
 
+        #verticalScreen {
+            z-index: 1;
+        }
+
         .cross-container {
             display: flex;
             gap: 10px;
@@ -104,7 +108,7 @@
     </div>
     <div id="lines"></div>
 
-    <div id="verticalScreen"></div>
+    <div id="verticalScreen" style="background-color: transparent;"></div>
     <div class="cross-container vertical" id="verticalCrosses">
         <div class="cross"></div>
         <div class="cross"></div>
@@ -174,7 +178,7 @@
 
         // Vertical layer animations
         function startVerticalAnimations() {
-            gsap.to("#verticalScreen", { duration: 1.5, backgroundColor: "white", onComplete: startVerticalCrossAnimation });
+            gsap.to("#verticalScreen", { duration: 1.5, backgroundColor: "transparent", onComplete: startVerticalCrossAnimation });
 
             function startVerticalCrossAnimation() {
                 const crosses = document.querySelectorAll('#verticalCrosses .cross');
