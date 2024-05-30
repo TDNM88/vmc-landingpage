@@ -25,36 +25,36 @@
     width: 20px;
     height: 20px;
     background-color: orange;
-    animation: moveClockwise 8s linear infinite;
+    animation: moveClockwise 4s linear infinite;
   }
 
   .square.blue {
     background-color: blue;
-    animation: moveCounterClockwise 8s linear infinite;
+    animation: moveCounterClockwise 4s linear infinite;
   }
 
   @keyframes moveClockwise {
-    0% { top: 0; left: 0; }
-    12.5% { top: 0; left: 50%; }
-    25% { top: 0; left: 100%; }
-    37.5% { top: 50%; left: 100%; }
-    50% { top: 100%; left: 100%; }
-    62.5% { top: 100%; left: 50%; }
-    75% { top: 100%; left: 0; }
-    87.5% { top: 50%; left: 0; }
-    100% { top: 0; left: 0; }
+    0% { top: 0; left: 0; transform: scale(1); }
+    12.5% { top: 0; left: 50%; transform: scale(1.5); }
+    25% { top: 0; left: 100%; transform: scale(2); }
+    37.5% { top: 50%; left: 100%; transform: scale(2.5); }
+    50% { top: 100%; left: 100%; transform: scale(3); }
+    62.5% { top: 100%; left: 50%; transform: scale(3.5); }
+    75% { top: 100%; left: 0; transform: scale(4); }
+    87.5% { top: 50%; left: 0; transform: scale(4.5); }
+    100% { top: 0; left: 0; transform: scale(5); }
   }
 
   @keyframes moveCounterClockwise {
-    0% { top: 0; left: 100%; }
-    12.5% { top: 0; left: 50%; }
-    25% { top: 0; left: 0; }
-    37.5% { top: 50%; left: 0; }
-    50% { top: 100%; left: 0; }
-    62.5% { top: 100%; left: 50%; }
-    75% { top: 100%; left: 100%; }
-    87.5% { top: 50%; left: 100%; }
-    100% { top: 0; left: 100%; }
+    0% { top: 0; left: 100%; transform: scale(1); }
+    12.5% { top: 0; left: 50%; transform: scale(1.5); }
+    25% { top: 0; left: 0; transform: scale(2); }
+    37.5% { top: 50%; left: 0; transform: scale(2.5); }
+    50% { top: 100%; left: 0; transform: scale(3); }
+    62.5% { top: 100%; left: 50%; transform: scale(3.5); }
+    75% { top: 100%; left: 100%; transform: scale(4); }
+    87.5% { top: 50%; left: 100%; transform: scale(4.5); }
+    100% { top: 0; left: 100%; transform: scale(5); }
   }
 
   .logo {
@@ -67,7 +67,7 @@
     background-size: cover;
     opacity: 0;
     transform: translate(-50%, -50%);
-    animation: fadeIn 1s forwards 8s;
+    animation: fadeIn 1s forwards 4s;
   }
 
   @keyframes fadeIn {
@@ -80,13 +80,13 @@
 <body>
 <div class="container">
   <div class="square" style="animation-delay: 0s;"></div>
+  <div class="square" style="animation-delay: 1s;"></div>
   <div class="square" style="animation-delay: 2s;"></div>
-  <div class="square" style="animation-delay: 4s;"></div>
-  <div class="square" style="animation-delay: 6s;"></div>
+  <div class="square" style="animation-delay: 3s;"></div>
   <div class="square blue" style="animation-delay: 0s;"></div>
+  <div class="square blue" style="animation-delay: 1s;"></div>
   <div class="square blue" style="animation-delay: 2s;"></div>
-  <div class="square blue" style="animation-delay: 4s;"></div>
-  <div class="square blue" style="animation-delay: 6s;"></div>
+  <div class="square blue" style="animation-delay: 3s;"></div>
   <div class="logo"></div>
 </div>
 </body>
