@@ -13,17 +13,26 @@
             overflow: hidden;
         }
 
-        #screen, #verticalScreen {
+        #screen, #verticalScreen, #ledScreen {
             width: 100%;
             height: 100%;
-            background-color: black;
             position: absolute;
             top: 0;
             left: 0;
         }
 
+        #screen {
+            background-color: black;
+        }
+
         #verticalScreen {
             z-index: 1;
+            background-color: transparent;
+        }
+
+        #ledScreen {
+            z-index: 2;
+            background-color: transparent;
         }
 
         .cross-container {
@@ -61,7 +70,7 @@
             transform: translateX(-50%);
         }
 
-        #lines, #verticalLines {
+        #lines, #verticalLines, #ledLines {
             position: absolute;
             top: 0;
             left: 0;
@@ -90,77 +99,38 @@
         .vertical-line:nth-child(even) {
             background-color: blue;
         }
+
+        .led-column {
+            position: absolute;
+            width: 20px;
+            height: 100%;
+        }
+
+        .led-column .cross {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <div id="screen"></div>
-    <div class="cross-container" id="crosses">
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-    </div>
     <div id="lines"></div>
 
-    <div id="verticalScreen" style="background-color: transparent;"></div>
-    <div class="cross-container vertical" id="verticalCrosses">
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-        <div class="cross"></div>
-    </div>
+    <div id="verticalScreen"></div>
     <div id="verticalLines"></div>
+
+    <div id="ledScreen"></div>
+    <div id="ledLines">
+        <!-- Các cột LED chứa các hình chữ thập -->
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script>
         // Màn hình đen mở đầu rồi dần chuyển sang màu trắng trong 1.5 giây
-        gsap.to("#screen", { duration: 1.5, backgroundColor: "white", onComplete: startCrossAnimation });
+        gsap.to("#screen", { duration: 1.5, backgroundColor: "white", onComplete: startLineAnimation });
 
-        // Animation hình chữ thập
-        function startCrossAnimation() {
-            const crosses = document.querySelectorAll('#crosses .cross');
-            const linesContainer = document.getElementById('lines');
-
-            gsap.to(crosses, {
-                duration: 0.5,
-                backgroundColor: 'black',
-                stagger: 0.1,
-                onComplete: () => {
-                    gsap.to(crosses, {
-                        duration: 0.5,
-                        backgroundColor: 'orange',
-                        stagger: {
-                            each: 0.1,
-                            from: 'end'
-                        },
-                        onComplete: startLineAnimation
-                    });
-                }
-            });
-
-            // Tạo các dòng da cam và xanh
-            for (let i = 0; i < 100; i++) {
-                const line = document.createElement('div');
-                line.className = 'line';
-                line.style.top = `${i * 10}px`;
-                linesContainer.appendChild(line);
-            }
-        }
-
-        // Animation các dòng
+        // Animation các dòng ngang và dọc
         function startLineAnimation() {
+            createLines();
             const lines = document.querySelectorAll('.line');
             gsap.to(lines, {
                 duration: 2,
@@ -172,45 +142,32 @@
                     ease: 'power1.inOut'
                 }
             });
-            // Start vertical animations with a delay of 0.5s
             setTimeout(startVerticalAnimations, 500);
         }
 
-        // Vertical layer animations
-        function startVerticalAnimations() {
-            gsap.to("#verticalScreen", { duration: 1.5, backgroundColor: "transparent", onComplete: startVerticalCrossAnimation });
+        // Tạo các dòng ngang và dọc
+        function createLines() {
+            const linesContainer = document.getElementById('lines');
+            const verticalLinesContainer = document.getElementById('verticalLines');
 
-            function startVerticalCrossAnimation() {
-                const crosses = document.querySelectorAll('#verticalCrosses .cross');
-                const linesContainer = document.getElementById('verticalLines');
-
-                gsap.to(crosses, {
-                    duration: 0.5,
-                    backgroundColor: 'black',
-                    stagger: 0.1,
-                    onComplete: () => {
-                        gsap.to(crosses, {
-                            duration: 0.5,
-                            backgroundColor: 'orange',
-                            stagger: {
-                                each: 0.1,
-                                from: 'end'
-                            },
-                            onComplete: startVerticalLineAnimation
-                        });
-                    }
-                });
-
-                // Tạo các dòng dọc màu da cam và xanh
-                for (let i = 0; i < 100; i++) {
-                    const line = document.createElement('div');
-                    line.className = 'vertical-line';
-                    line.style.left = `${i * 10}px`;
-                    linesContainer.appendChild(line);
-                }
+            for (let i = 0; i < 100; i++) {
+                const line = document.createElement('div');
+                line.className = 'line';
+                line.style.top = `${i * 10}px`;
+                linesContainer.appendChild(line);
             }
 
-            // Animation các dòng dọc
+            for (let i = 0; i < 100; i++) {
+                const line = document.createElement('div');
+                line.className = 'vertical-line';
+                line.style.left = `${i * 10}px`;
+                verticalLinesContainer.appendChild(line);
+            }
+        }
+
+        function startVerticalAnimations() {
+            gsap.to("#verticalScreen", { duration: 1.5, backgroundColor: "transparent", onComplete: startVerticalLineAnimation });
+
             function startVerticalLineAnimation() {
                 const lines = document.querySelectorAll('.vertical-line');
                 gsap.to(lines, {
@@ -223,7 +180,53 @@
                         ease: 'power1.inOut'
                     }
                 });
+                createLEDEffect();
             }
+        }
+
+        // Tạo hiệu ứng LED
+        function createLEDEffect() {
+            const ledLinesContainer = document.getElementById('ledLines');
+
+            for (let i = 0; i < 15; i++) {
+                const ledColumn = document.createElement('div');
+                ledColumn.className = 'led-column';
+                ledColumn.style.left = `${i * 6.67}%`;
+
+                for (let j = 0; j < 30; j++) {
+                    const cross = document.createElement('div');
+                    cross.className = 'cross';
+                    ledColumn.appendChild(cross);
+                }
+
+                ledLinesContainer.appendChild(ledColumn);
+            }
+
+            startLEDEffect();
+        }
+
+        function startLEDEffect() {
+            const crosses = document.querySelectorAll('#ledLines .cross');
+
+            gsap.timeline({ repeat: -1, yoyo: true })
+                .to(crosses, {
+                    backgroundColor: 'orange',
+                    duration: 0.1,
+                    stagger: {
+                        grid: [30, 15],
+                        from: "random",
+                        each: 0.05
+                    }
+                })
+                .to(crosses, {
+                    backgroundColor: 'blue',
+                    duration: 0.1,
+                    stagger: {
+                        grid: [30, 15],
+                        from: "random",
+                        each: 0.05
+                    }
+                });
         }
     </script>
 </body>
