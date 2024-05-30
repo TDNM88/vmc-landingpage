@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Animation</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  .square {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: orange;
+    animation: moveIn 3s forwards;
+  }
+
+  .square.blue {
+    background-color: blue;
+  }
+
+  @keyframes moveIn {
+    0% {
+      transform: translate(-100vw, -100vh);
+    }
+    25% {
+      transform: translate(100vw, -100vh);
+    }
+    50% {
+      transform: translate(100vw, 100vh);
+    }
+    75% {
+      transform: translate(-100vw, 100vh);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://p19-bot-sign-sg.ciciai.com/tos-alisg-i-b2l6bve69y-sg/84ffe00323a3438db4b3be9cb8c261bd.jpeg~tplv-b2l6bve69y-image.image?rk3s=68e6b6b5&x-expires=1719652389&x-signature=cumWddu6o838kIZk2A0YYfAGCyE%3D');
+    background-size: cover;
+    opacity: 0;
+    animation: fadeIn 1s forwards 3s;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="square" style="top: 0; left: 0;"></div>
+  <div class="square blue" style="top: 0; left: 180px;"></div>
+  <div class="square" style="top: 180px; left: 0;"></div>
+  <div class="square blue" style="top: 180px; left: 180px;"></div>
+  <div class="logo"></div>
+</div>
+</body>
+</html>
