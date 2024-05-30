@@ -27,28 +27,10 @@
     width: 20px;
     height: 20px;
     background-color: orange;
-    animation: moveCounterClockwise 2s linear infinite;
   }
 
   .square.blue {
     background-color: blue;
-    animation: moveClockwise 2s linear infinite;
-  }
-
-  @keyframes moveClockwise {
-    0% { top: 0; left: 0; }
-    25% { top: 0; left: calc(100% - 20px); }
-    50% { top: calc(100% - 20px); left: calc(100% - 20px); }
-    75% { top: calc(100% - 20px); left: 0; }
-    100% { top: 0; left: 0; }
-  }
-
-  @keyframes moveCounterClockwise {
-    0% { top: 0; left: calc(100% - 20px); }
-    25% { top: 0; left: 0; }
-    50% { top: calc(100% - 20px); left: 0; }
-    75% { top: calc(100% - 20px); left: calc(100% - 20px); }
-    100% { top: 0; left: calc(100% - 20px); }
   }
 
   .line {
@@ -56,22 +38,10 @@
     width: 100vw;
     height: 5px;
     background-color: orange;
-    animation: moveLeft 1s linear infinite;
   }
 
   .line.blue {
     background-color: blue;
-    animation: moveRight 1s linear infinite;
-  }
-
-  @keyframes moveLeft {
-    0% { left: 100vw; }
-    100% { left: -100vw; }
-  }
-
-  @keyframes moveRight {
-    0% { left: -100vw; }
-    100% { left: 100vw; }
   }
 
   .logo {
@@ -84,13 +54,6 @@
     background-size: cover;
     opacity: 0;
     transform: translate(-50%, -50%);
-    animation: fadeIn 1s forwards 4s;
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
   }
 
   .text {
@@ -101,13 +64,6 @@
     font-size: 24px;
     color: #333;
     opacity: 0;
-    animation: textFadeIn 1s forwards 8s;
-  }
-
-  @keyframes textFadeIn {
-    to {
-      opacity: 1;
-    }
   }
 
   .tagline {
@@ -118,37 +74,30 @@
     font-size: 18px;
     color: #555;
     opacity: 0;
-    animation: taglineFadeIn 1s forwards 12s;
-  }
-
-  @keyframes taglineFadeIn {
-    to {
-      opacity: 1;
-    }
   }
 </style>
 </head>
 <body>
 <div class="container">
   <!-- Hình vuông màu xanh -->
-  <div class="square blue" style="animation-delay: 0s;"></div>
-  <div class="square blue" style="animation-delay: 0.5s;"></div>
-  <div class="square blue" style="animation-delay: 1s;"></div>
-  <div class="square blue" style="animation-delay: 1.5s;"></div>
-  <div class="square blue" style="animation-delay: 2s;"></div>
-  <div class="square blue" style="animation-delay: 2.5s;"></div>
-  <div class="square blue" style="animation-delay: 3s;"></div>
-  <div class="square blue" style="animation-delay: 3.5s;"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
+  <div class="square blue"></div>
 
   <!-- Hình vuông màu cam -->
-  <div class="square" style="animation-delay: 0s;"></div>
-  <div class="square" style="animation-delay: 0.5s;"></div>
-  <div class="square" style="animation-delay: 1s;"></div>
-  <div class="square" style="animation-delay: 1.5s;"></div>
-  <div class="square" style="animation-delay: 2s;"></div>
-  <div class="square" style="animation-delay: 2.5s;"></div>
-  <div class="square" style="animation-delay: 3s;"></div>
-  <div class="square" style="animation-delay: 3.5s;"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
 
   <!-- Đường màu cam -->
   <div class="line" style="top: 25%;"></div>
@@ -175,5 +124,95 @@
   <source src="path_to_your_audio_file.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
+
+<!-- Thư viện GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+  // Background animation
+  gsap.to("body", {
+    background: "linear-gradient(to bottom, white, lightblue)",
+    duration: 2,
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Square animations
+  const squaresBlue = document.querySelectorAll('.square.blue');
+  const squaresOrange = document.querySelectorAll('.square:not(.blue)');
+
+  squaresBlue.forEach((square, i) => {
+    gsap.to(square, {
+      duration: 2,
+      repeat: -1,
+      ease: "linear",
+      motionPath: {
+        path: [
+          { x: 0, y: 0 },
+          { x: window.innerWidth - 20, y: 0 },
+          { x: window.innerWidth - 20, y: window.innerHeight - 20 },
+          { x: 0, y: window.innerHeight - 20 },
+          { x: 0, y: 0 }
+        ],
+        autoRotate: false,
+        alignOrigin: [0.5, 0.5]
+      },
+      delay: i * 0.5
+    });
+  });
+
+  squaresOrange.forEach((square, i) => {
+    gsap.to(square, {
+      duration: 2,
+      repeat: -1,
+      ease: "linear",
+      motionPath: {
+        path: [
+          { x: window.innerWidth - 20, y: 0 },
+          { x: 0, y: 0 },
+          { x: 0, y: window.innerHeight - 20 },
+          { x: window.innerWidth - 20, y: window.innerHeight - 20 },
+          { x: window.innerWidth - 20, y: 0 }
+        ],
+        autoRotate: false,
+        alignOrigin: [0.5, 0.5]
+      },
+      delay: i * 0.5
+    });
+  });
+
+  // Line animations
+  gsap.to(".line", {
+    x: "-100vw",
+    duration: 1,
+    repeat: -1,
+    ease: "linear"
+  });
+
+  gsap.to(".line.blue", {
+    x: "100vw",
+    duration: 1,
+    repeat: -1,
+    ease: "linear"
+  });
+
+  // Logo and text animations
+  gsap.to(".logo", {
+    opacity: 1,
+    duration: 1,
+    delay: 4
+  });
+
+  gsap.to(".text", {
+    opacity: 1,
+    duration: 1,
+    delay: 8
+  });
+
+  gsap.to(".tagline", {
+    opacity: 1,
+    duration: 1,
+    delay: 12
+  });
+</script>
 </body>
 </html>
