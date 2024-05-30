@@ -15,89 +15,57 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
-        #logo {
+        .container {
             position: relative;
-            width: 200px;
-            height: 200px;
-        }
-        .block {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            opacity: 0;
-        }
-        .block.orange {
-            background-color: #f57c00;
-        }
-        .block.blue {
-            background-color: #1976d2;
-        }
-        .text {
-            position: absolute;
-            font-size: 14px;
-            color: #f57c00;
-            opacity: 0;
-        }
-        #text-container {
-            position: absolute;
-            font-size: 40px;
-            color: #1976d2;
-            opacity: 0;
-            top: 80px;
-            left: 60px;
-        }
-        #tagline {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
-            color: #1976d2;
-            opacity: 0;
+            width: 100vw;
+            height: 100vh;
         }
         .line {
             position: absolute;
             width: 100vw;
             height: 5px;
-            opacity: 0;
+            background-color: #1976d2;
+            opacity: 0.5;
         }
         .line.orange {
             background-color: #f57c00;
         }
-        .line.blue {
-            background-color: #1976d2;
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background-image: url('https://p19-bot-sign-sg.ciciai.com/tos-alisg-i-b2l6bve69y-sg/22fe9eb5694b454b97d68d36664d6fcd.png~tplv-b2l6bve69y-image.image?rk3s=68e6b6b5&x-expires=1719659514&x-signature=Exa%2F8vA4h00ckdZ%2FsF1pInR7XC8%3D');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <div id="logo">
-        <div class="block orange" id="block1" style="top: 60px; left: 40px;"></div>
-        <div class="block orange" id="block2" style="top: 60px; left: 60px;"></div>
-        <div class="block orange" id="block3" style="top: 80px; left: 60px;"></div>
-        <div class="block orange" id="block4" style="top: 100px; left: 80px;"></div>
-        <div class="text" id="hospital-text" style="top: 40px; left: 0px;">Children hospital</div>
-        <div id="text-container">ʜорbу</div>
-        <div id="tagline">Caring for the future, one child at a time</div>
+    <div class="container">
+        <!-- Đường màu xanh -->
+        <div class="line blue" style="top: 10%;"></div>
+        <div class="line blue" style="top: 30%;"></div>
+        <div class="line blue" style="top: 50%;"></div>
+        <div class="line blue" style="top: 70%;"></div>
+        <div class="line blue" style="top: 90%;"></div>
+
+        <!-- Đường màu cam -->
+        <div class="line orange" style="top: 20%;"></div>
+        <div class="line orange" style="top: 40%;"></div>
+        <div class="line orange" style="top: 60%;"></div>
+        <div class="line orange" style="top: 80%;"></div>
+
+        <!-- Logo -->
+        <div class="logo"></div>
     </div>
 
-    <!-- Đường màu cam -->
-    <div class="line orange" style="top: 25%;"></div>
-    <div class="line orange" style="top: 50%;"></div>
-    <div class="line orange" style="top: 75%;"></div>
-
-    <!-- Đường màu xanh -->
-    <div class="line blue" style="top: 35%;"></div>
-    <div class="line blue" style="top: 60%;"></div>
-    <div class="line blue" style="top: 85%;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
     <script>
         gsap.registerPlugin(MotionPathPlugin);
-
-        // Background music
-        const audio = new Audio('path/to/your/uplifting-piano-music.mp3');
-        audio.play();
 
         // Background animation
         gsap.to("body", {
@@ -107,71 +75,56 @@
             yoyo: true
         });
 
-        // Square animations
-        const createSquares = (color, path, delayMultiplier) => {
-            for (let i = 0; i < 32; i++) {
-                let square = document.createElement('div');
-                square.className = `block ${color}`;
-                document.body.appendChild(square);
-                gsap.to(square, {
-                    duration: 2,
-                    repeat: -1,
-                    ease: "linear",
-                    motionPath: {
-                        path: path,
-                        autoRotate: false,
-                        alignOrigin: [0.5, 0.5]
-                    },
-                    delay: i * delayMultiplier
-                });
-            }
-        };
-
-        createSquares('blue', [
-            { x: 0, y: 0 },
-            { x: window.innerWidth - 20, y: 0 },
-            { x: window.innerWidth - 20, y: window.innerHeight - 20 },
-            { x: 0, y: window.innerHeight - 20 },
-            { x: 0, y: 0 }
-        ], 0.125);
-
-        createSquares('orange', [
-            { x: window.innerWidth - 20, y: 0 },
-            { x: 0, y: 0 },
-            { x: 0, y: window.innerHeight - 20 },
-            { x: window.innerWidth - 20, y: window.innerHeight - 20 },
-            { x: window.innerWidth - 20, y: 0 }
-        ], 0.125);
-
         // Line animations
-        gsap.to(".line.orange", {
-            x: "-100vw",
-            duration: 1,
-            repeat: -1,
-            ease: "linear",
-            opacity: 1
-        });
-
         gsap.to(".line.blue", {
             x: "100vw",
-            duration: 1,
+            duration: 2,
             repeat: -1,
-            ease: "linear",
-            opacity: 1
+            ease: "linear"
         });
 
-        // Logo and text animations
+        gsap.to(".line.orange", {
+            x: "-100vw",
+            duration: 2,
+            repeat: -1,
+            ease: "linear"
+        });
+
+        // Logo animation timeline
         gsap.timeline()
-            .to("#block1", {duration: 1, opacity: 1, ease: "power2.inOut"})
-            .to("#block2", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
-            .to("#block3", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
-            .to("#block4", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
-            .to("#hospital-text", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
-            .to("#hospital-text", {duration: 1, left: "-=10", top: "-=10", ease: "power2.inOut"})
-            .to("#text-container", {duration: 2, opacity: 1, ease: "power2.inOut"}, "-=1")
-            .to("#logo", {duration: 1, scale: 1.05, yoyo: true, repeat: 1, ease: "power2.inOut"})
-            .to("#tagline", {duration: 2, opacity: 1, ease: "power2.inOut"})
-            .to("body", {duration: 2, background: "#ffffff", ease: "power2.inOut"});
+            .to(".line.blue, .line.orange", {
+                opacity: 1,
+                duration: 2,
+                stagger: 0.2,
+                ease: "power2.inOut"
+            })
+            .to(".line.blue, .line.orange", {
+                duration: 2,
+                onComplete: () => {
+                    // Highlight and transform lines to form the logo
+                    gsap.to(".line.blue, .line.orange", {
+                        backgroundColor: "#000",
+                        duration: 1,
+                        ease: "power2.inOut"
+                    });
+                    gsap.to(".line.blue, .line.orange", {
+                        scaleX: 0.5,
+                        scaleY: 0.5,
+                        x: "50vw",
+                        y: "50vh",
+                        duration: 2,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            // Display the logo
+                            gsap.to(".logo", {
+                                opacity: 1,
+                                duration: 2,
+                                ease: "power2.inOut"
+                            });
+                        }
+                    });
+                }
+            });
     </script>
 </body>
 </html>
