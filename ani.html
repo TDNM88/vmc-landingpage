@@ -13,10 +13,13 @@
             overflow: hidden;
         }
 
-        #screen {
+        #screen, #verticalScreen {
             width: 100%;
             height: 100%;
             background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .cross-container {
@@ -54,7 +57,7 @@
             transform: translateX(-50%);
         }
 
-        #lines {
+        #lines, #verticalLines {
             position: absolute;
             top: 0;
             left: 0;
@@ -70,6 +73,17 @@
         }
 
         .line:nth-child(even) {
+            background-color: blue;
+        }
+
+        .vertical-line {
+            position: absolute;
+            height: 100%;
+            width: 5px;
+            background-color: orange;
+        }
+
+        .vertical-line:nth-child(even) {
             background-color: blue;
         }
     </style>
@@ -89,6 +103,22 @@
         <div class="cross"></div>
     </div>
     <div id="lines"></div>
+
+    <div id="verticalScreen"></div>
+    <div class="cross-container vertical" id="verticalCrosses">
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+        <div class="cross"></div>
+    </div>
+    <div id="verticalLines"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script>
         // Màn hình đen mở đầu rồi dần chuyển sang màu trắng trong 1.5 giây
@@ -96,7 +126,7 @@
 
         // Animation hình chữ thập
         function startCrossAnimation() {
-            const crosses = document.querySelectorAll('.cross');
+            const crosses = document.querySelectorAll('#crosses .cross');
             const linesContainer = document.getElementById('lines');
 
             gsap.to(crosses, {
@@ -138,6 +168,58 @@
                     ease: 'power1.inOut'
                 }
             });
+            // Start vertical animations with a delay of 0.5s
+            setTimeout(startVerticalAnimations, 500);
+        }
+
+        // Vertical layer animations
+        function startVerticalAnimations() {
+            gsap.to("#verticalScreen", { duration: 1.5, backgroundColor: "white", onComplete: startVerticalCrossAnimation });
+
+            function startVerticalCrossAnimation() {
+                const crosses = document.querySelectorAll('#verticalCrosses .cross');
+                const linesContainer = document.getElementById('verticalLines');
+
+                gsap.to(crosses, {
+                    duration: 0.5,
+                    backgroundColor: 'black',
+                    stagger: 0.1,
+                    onComplete: () => {
+                        gsap.to(crosses, {
+                            duration: 0.5,
+                            backgroundColor: 'orange',
+                            stagger: {
+                                each: 0.1,
+                                from: 'end'
+                            },
+                            onComplete: startVerticalLineAnimation
+                        });
+                    }
+                });
+
+                // Tạo các dòng dọc màu da cam và xanh
+                for (let i = 0; i < 100; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'vertical-line';
+                    line.style.left = `${i * 10}px`;
+                    linesContainer.appendChild(line);
+                }
+            }
+
+            // Animation các dòng dọc
+            function startVerticalLineAnimation() {
+                const lines = document.querySelectorAll('.vertical-line');
+                gsap.to(lines, {
+                    duration: 2,
+                    y: '100%',
+                    stagger: {
+                        each: 0.1,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'power1.inOut'
+                    }
+                });
+            }
         }
     </script>
 </body>
