@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation</title>
+    <title>Modern LED Animation</title>
     <style>
         body, html {
             margin: 0;
@@ -11,32 +11,26 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-        }
-
-        #screen, #verticalScreen, #ledScreen {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        #screen {
             background-color: black;
         }
 
-        #verticalScreen {
-            z-index: 1;
-            background-color: transparent;
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
-        #ledScreen {
-            z-index: 2;
-            background-color: transparent;
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .cross-container {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             justify-content: center;
             align-items: center;
@@ -46,7 +40,6 @@
         .cross {
             width: 20px;
             height: 20px;
-            background-color: transparent;
             position: relative;
         }
 
@@ -70,19 +63,12 @@
             transform: translateX(-50%);
         }
 
-        #lines, #verticalLines, #ledLines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
         .line {
             position: absolute;
             width: 100%;
             height: 5px;
             background-color: orange;
+            opacity: 0.8;
         }
 
         .line:nth-child(even) {
@@ -94,6 +80,7 @@
             height: 100%;
             width: 5px;
             background-color: orange;
+            opacity: 0.8;
         }
 
         .vertical-line:nth-child(even) {
@@ -112,15 +99,13 @@
     </style>
 </head>
 <body>
-    <div id="screen"></div>
-    <div id="lines"></div>
-
-    <div id="verticalScreen"></div>
-    <div id="verticalLines"></div>
-
-    <div id="ledScreen"></div>
-    <div id="ledLines">
-        <!-- Các cột LED chứa các hình chữ thập -->
+    <div class="container">
+        <div id="screen" class="layer"></div>
+        <div id="lines" class="layer"></div>
+        <div id="verticalScreen" class="layer"></div>
+        <div id="verticalLines" class="layer"></div>
+        <div id="ledScreen" class="layer"></div>
+        <div id="ledLines" class="layer"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
@@ -133,7 +118,7 @@
             createLines();
             const lines = document.querySelectorAll('.line');
             gsap.to(lines, {
-                duration: 2,
+                duration: 3,
                 x: '100%',
                 stagger: {
                     each: 0.1,
@@ -150,17 +135,17 @@
             const linesContainer = document.getElementById('lines');
             const verticalLinesContainer = document.getElementById('verticalLines');
 
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 20; i++) {
                 const line = document.createElement('div');
                 line.className = 'line';
-                line.style.top = `${i * 10}px`;
+                line.style.top = `${i * 5}vh`;
                 linesContainer.appendChild(line);
             }
 
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 20; i++) {
                 const line = document.createElement('div');
                 line.className = 'vertical-line';
-                line.style.left = `${i * 10}px`;
+                line.style.left = `${i * 5}vw`;
                 verticalLinesContainer.appendChild(line);
             }
         }
@@ -171,7 +156,7 @@
             function startVerticalLineAnimation() {
                 const lines = document.querySelectorAll('.vertical-line');
                 gsap.to(lines, {
-                    duration: 2,
+                    duration: 3,
                     y: '100%',
                     stagger: {
                         each: 0.1,
@@ -211,7 +196,7 @@
             gsap.timeline({ repeat: -1, yoyo: true })
                 .to(crosses, {
                     backgroundColor: 'orange',
-                    duration: 0.1,
+                    duration: 0.5,
                     stagger: {
                         grid: [30, 15],
                         from: "random",
@@ -220,7 +205,7 @@
                 })
                 .to(crosses, {
                     backgroundColor: 'blue',
-                    duration: 0.1,
+                    duration: 0.5,
                     stagger: {
                         grid: [30, 15],
                         from: "random",
