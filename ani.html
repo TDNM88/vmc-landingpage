@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children's Hospital Logo Animation</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+            overflow: hidden;
+        }
+        #logo {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .block {
+            width: 20px;
+            height: 20px;
+            background-color: #f57c00;
+            position: absolute;
+            opacity: 0;
+        }
+        .text {
+            position: absolute;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            color: #f57c00;
+            opacity: 0;
+        }
+        #text-container {
+            position: absolute;
+            font-family: 'Arial', sans-serif;
+            font-size: 40px;
+            color: #1976d2;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">
+        <div class="block" id="block1" style="top: 60px; left: 40px;"></div>
+        <div class="block" id="block2" style="top: 60px; left: 60px;"></div>
+        <div class="block" id="block3" style="top: 80px; left: 60px;"></div>
+        <div class="block" id="block4" style="top: 100px; left: 80px;"></div>
+        <div class="text" id="hospital-text" style="top: 40px; left: 0px;">Children hospital</div>
+        <div id="text-container">ʜорbу</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        gsap.timeline()
+            .to("#block1", {duration: 1, opacity: 1, ease: "power2.inOut"})
+            .to("#block2", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
+            .to("#block3", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
+            .to("#block4", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
+            .to("#hospital-text", {duration: 1, opacity: 1, ease: "power2.inOut"})
+            .to("#hospital-text", {duration: 1, left: "-=10", top: "-=10", ease: "power2.inOut"})
+            .to("#text-container", {duration: 2, opacity: 1, ease: "power2.inOut"}, "-=1")
+            .to("#logo", {duration: 1, scale: 1.05, yoyo: true, repeat: 1, ease: "power2.inOut"})
+            .to("#logo", {duration: 1, opacity: 1, ease: "power2.inOut"})
+            .to("#logo", {duration: 1, opacity: 1, ease: "power2.inOut"})
+    </script>
+</body>
+</html>
