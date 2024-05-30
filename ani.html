@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern LED Animation</title>
+    <title>Modern Animation</title>
     <style>
         body, html {
             margin: 0;
@@ -28,73 +28,53 @@
             height: 100%;
         }
 
-        .cross-container {
+        .block-container {
+            position: absolute;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
             align-items: center;
+            width: 100%;
             height: 100%;
         }
 
-        .cross {
+        .block {
             width: 20px;
             height: 20px;
-            position: relative;
+            margin: 5px;
+            background-color: transparent;
         }
 
-        .cross::before, .cross::after {
+        #cross {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            opacity: 0;
+        }
+
+        #cross::before, #cross::after {
             content: '';
             position: absolute;
-            background-color: black;
+            background-color: white;
         }
 
-        .cross::before {
+        #cross::before {
             width: 100%;
-            height: 2px;
-            top: 50%;
-            transform: translateY(-50%);
+            height: 20%;
+            top: 40%;
+            left: 0;
         }
 
-        .cross::after {
+        #cross::after {
             height: 100%;
-            width: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .line {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background-color: orange;
-            opacity: 0.8;
-        }
-
-        .line:nth-child(even) {
-            background-color: blue;
-        }
-
-        .vertical-line {
-            position: absolute;
-            height: 100%;
-            width: 5px;
-            background-color: orange;
-            opacity: 0.8;
-        }
-
-        .vertical-line:nth-child(even) {
-            background-color: blue;
-        }
-
-        .led-column {
-            position: absolute;
-            width: 20px;
-            height: 100%;
-        }
-
-        .led-column .cross {
-            margin-bottom: 10px;
+            width: 20%;
+            left: 40%;
+            top: 0;
         }
     </style>
 </head>
@@ -104,14 +84,14 @@
         <div id="lines" class="layer"></div>
         <div id="verticalScreen" class="layer"></div>
         <div id="verticalLines" class="layer"></div>
-        <div id="ledScreen" class="layer"></div>
-        <div id="ledLines" class="layer"></div>
+        <div id="blockContainer" class="layer block-container"></div>
+        <div id="cross"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script>
         // Màn hình đen mở đầu rồi dần chuyển sang màu trắng trong 1.5 giây
-        gsap.to("#screen", { duration: 1.5, backgroundColor: "white", onComplete: startLineAnimation });
+        gsap.to("#screen", { duration: 1.5, backgroundColor: "#f0f0f0", onComplete: startLineAnimation });
 
         // Animation các dòng ngang và dọc
         function startLineAnimation() {
@@ -165,36 +145,30 @@
                         ease: 'power1.inOut'
                     }
                 });
-                createLEDEffect();
+                createBlockEffect();
             }
         }
 
-        // Tạo hiệu ứng LED
-        function createLEDEffect() {
-            const ledLinesContainer = document.getElementById('ledLines');
+        // Tạo hiệu ứng khối hộp
+        function createBlockEffect() {
+            const blockContainer = document.getElementById('blockContainer');
 
-            for (let i = 0; i < 15; i++) {
-                const ledColumn = document.createElement('div');
-                ledColumn.className = 'led-column';
-                ledColumn.style.left = `${i * 6.67}%`;
-
-                for (let j = 0; j < 30; j++) {
-                    const cross = document.createElement('div');
-                    cross.className = 'cross';
-                    ledColumn.appendChild(cross);
+            for (let i = 0; i < 30; i++) {
+                for (let j = 0; j < 15; j++) {
+                    const block = document.createElement('div');
+                    block.className = 'block';
+                    blockContainer.appendChild(block);
                 }
-
-                ledLinesContainer.appendChild(ledColumn);
             }
 
-            startLEDEffect();
+            startBlockEffect();
         }
 
-        function startLEDEffect() {
-            const crosses = document.querySelectorAll('#ledLines .cross');
+        function startBlockEffect() {
+            const blocks = document.querySelectorAll('#blockContainer .block');
 
             gsap.timeline({ repeat: -1, yoyo: true })
-                .to(crosses, {
+                .to(blocks, {
                     backgroundColor: 'orange',
                     duration: 0.5,
                     stagger: {
@@ -203,7 +177,7 @@
                         each: 0.05
                     }
                 })
-                .to(crosses, {
+                .to(blocks, {
                     backgroundColor: 'blue',
                     duration: 0.5,
                     stagger: {
@@ -212,6 +186,53 @@
                         each: 0.05
                     }
                 });
+
+            setTimeout(aggregateBlocks, 15000);
+        }
+
+        function aggregateBlocks() {
+            const blocks = document.querySelectorAll('#blockContainer .block');
+
+            // Tụ về một hướng
+            gsap.to(blocks, {
+                duration: 2,
+                x: (i, target) => target.style.backgroundColor === 'orange' ? '-100vw' : '100vw',
+                stagger: {
+                    grid: [30, 15],
+                    from: "random",
+                    each: 0.05
+                }
+            });
+
+            // Nhấp nháy
+            setTimeout(() => {
+                gsap.timeline({ repeat: 4, yoyo: true })
+                    .to(blocks, {
+                        backgroundColor: 'transparent',
+                        duration: 0.5,
+                        stagger: {
+                            grid: [30, 15],
+                            from: "random",
+                            each: 0.05
+                        }
+                    });
+            }, 2000);
+
+            // Màn hình tối đen và xuất hiện biểu tượng chữ thập của ngành y
+            setTimeout(() => {
+                gsap.to("#blockContainer, #lines, #verticalLines", { duration: 1, opacity: 0, onComplete: showCross });
+            }, 4000);
+        }
+
+        function showCross() {
+            const cross = document.getElementById('cross');
+            cross.style.display = 'block';
+            gsap.to(cross, {
+                duration: 3,
+                width: '200px',
+                height: '200px',
+                opacity: 1
+            });
         }
     </script>
 </body>
