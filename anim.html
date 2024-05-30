@@ -57,6 +57,29 @@
     100% { top: 0; left: 100%; transform: scale(5); }
   }
 
+  .line {
+    position: absolute;
+    width: 100vw;
+    height: 5px;
+    background-color: orange;
+    animation: moveLeft 2s linear infinite;
+  }
+
+  .line.blue {
+    background-color: blue;
+    animation: moveRight 2s linear infinite;
+  }
+
+  @keyframes moveLeft {
+    0% { left: 100vw; }
+    100% { left: -100vw; }
+  }
+
+  @keyframes moveRight {
+    0% { left: -100vw; }
+    100% { left: 100vw; }
+  }
+
   .logo {
     position: absolute;
     top: 50%;
@@ -87,6 +110,12 @@
   <div class="square blue" style="animation-delay: 1s;"></div>
   <div class="square blue" style="animation-delay: 2s;"></div>
   <div class="square blue" style="animation-delay: 3s;"></div>
+  <div class="line" style="top: 25%;"></div>
+  <div class="line" style="top: 50%;"></div>
+  <div class="line" style="top: 75%;"></div>
+  <div class="line blue" style="top: 35%;"></div>
+  <div class="line blue" style="top: 60%;"></div>
+  <div class="line blue" style="top: 85%;"></div>
   <div class="logo"></div>
 </div>
 </body>
