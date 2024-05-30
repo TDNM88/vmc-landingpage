@@ -13,6 +13,7 @@
             height: 100vh;
             background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
             overflow: hidden;
+            font-family: Arial, sans-serif;
         }
         #logo {
             position: relative;
@@ -28,15 +29,24 @@
         }
         .text {
             position: absolute;
-            font-family: 'Arial', sans-serif;
             font-size: 14px;
             color: #f57c00;
             opacity: 0;
         }
         #text-container {
             position: absolute;
-            font-family: 'Arial', sans-serif;
             font-size: 40px;
+            color: #1976d2;
+            opacity: 0;
+            top: 80px;
+            left: 60px;
+        }
+        #tagline {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
             color: #1976d2;
             opacity: 0;
         }
@@ -50,21 +60,27 @@
         <div class="block" id="block4" style="top: 100px; left: 80px;"></div>
         <div class="text" id="hospital-text" style="top: 40px; left: 0px;">Children hospital</div>
         <div id="text-container">ʜорbу</div>
+        <div id="tagline">Caring for the future, one child at a time</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script>
+        // Background music
+        const audio = new Audio('path/to/your/uplifting-piano-music.mp3');
+        audio.play();
+
         gsap.timeline()
+            .to("body", {duration: 0, background: "linear-gradient(to bottom right, #e0f7fa, #ffffff)"})
             .to("#block1", {duration: 1, opacity: 1, ease: "power2.inOut"})
             .to("#block2", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
             .to("#block3", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
             .to("#block4", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
-            .to("#hospital-text", {duration: 1, opacity: 1, ease: "power2.inOut"})
+            .to("#hospital-text", {duration: 1, opacity: 1, ease: "power2.inOut"}, "-=0.5")
             .to("#hospital-text", {duration: 1, left: "-=10", top: "-=10", ease: "power2.inOut"})
             .to("#text-container", {duration: 2, opacity: 1, ease: "power2.inOut"}, "-=1")
             .to("#logo", {duration: 1, scale: 1.05, yoyo: true, repeat: 1, ease: "power2.inOut"})
-            .to("#logo", {duration: 1, opacity: 1, ease: "power2.inOut"})
-            .to("#logo", {duration: 1, opacity: 1, ease: "power2.inOut"})
+            .to("#tagline", {duration: 2, opacity: 1, ease: "power2.inOut"})
+            .to("body", {duration: 2, background: "#ffffff", ease: "power2.inOut"});
     </script>
 </body>
 </html>
