@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Square Animation</title>
+    <title>3D Playful Shape Animation</title>
     <style>
-        body { margin: 0; overflow: hidden; }
+        body { margin: 0; overflow: hidden; background-color: white; }
         canvas { display: block; }
     </style>
 </head>
@@ -17,15 +17,20 @@
         // Thiết lập cảnh, máy ảnh, và renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Tạo một hình lập phương
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+        // Tạo một hình dạng hiện đại (Dodecahedron)
+        const geometry = new THREE.DodecahedronGeometry();
+        const material = new THREE.MeshPhongMaterial({ color: 0x1E90FF });
+        const shape = new THREE.Mesh(geometry, material);
+        scene.add(shape);
+
+        // Ánh sáng
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 5, 5).normalize();
+        scene.add(light);
 
         camera.position.z = 5;
 
@@ -41,11 +46,11 @@
             // Kết thúc sau 4 giây
             if (elapsedTime > 4) return;
 
-            // Cập nhật vị trí và xoay của hình lập phương
-            cube.rotation.x += 0.1;
-            cube.rotation.y += 0.1;
-            cube.position.x = Math.sin(elapsedTime * 10) * 2;
-            cube.position.y = Math.cos(elapsedTime * 10) * 2;
+            // Cập nhật vị trí và xoay của hình dạng
+            shape.rotation.x += 0.1;
+            shape.rotation.y += 0.1;
+            shape.position.x = Math.sin(elapsedTime * 10) * 2;
+            shape.position.y = Math.cos(elapsedTime * 10) * 2;
 
             renderer.render(scene, camera);
         }
