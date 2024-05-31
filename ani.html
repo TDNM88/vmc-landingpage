@@ -29,8 +29,8 @@
 
         .shape {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background: #ff6f61; /* Orange color */
             border-radius: 15%;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -78,7 +78,7 @@
 
             // Function to create shapes
             function createShapes() {
-                for (let i = 0; i < 60; i++) { // Increased number of shapes to 60
+                for (let i = 0; i < 180; i++) { // Increased number of shapes to 180
                     const shape = document.createElement('div');
                     shape.className = `shape ${i % 2 === 0 ? 'circle' : ''}`;
                     shape.style.top = `${Math.random() * 100}%`;
@@ -96,32 +96,18 @@
 
             // Initial appearance and random movement of shapes
             tl.to(shapes, {
-                duration: 2,
-                x: () => Math.random() * 200 - 100,
-                y: () => Math.random() * 200 - 100,
-                rotation: 360,
-                scale: 1.5,
-                stagger: {
-                    amount: 1,
-                    grid: [10, 6],
-                    from: "center",
-                },
-                ease: "sine.inOut"
-            })
-            .to(shapes, {
-                duration: 4,
-                x: () => Math.random() * 200 - 100,
-                y: () => Math.random() * 200 - 100,
+                duration: 2.5,
+                x: () => Math.random() * 400 - 200,
+                y: () => Math.random() * 400 - 200,
                 rotation: 720,
                 scale: 1.5,
                 stagger: {
-                    amount: 1,
-                    grid: [10, 6],
+                    amount: 2,
+                    grid: [15, 12],
                     from: "center",
                 },
-                ease: "sine.inOut",
-                onComplete: formSmile
-            }, "+=0.5");
+                ease: "sine.inOut"
+            });
 
             // Function to form a smiley face shape
             function formSmile() {
@@ -133,8 +119,8 @@
 
                 gsap.to(shapes, {
                     duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
                     backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
                     scale: 1,
                     ease: "power2.inOut",
@@ -155,8 +141,8 @@
 
                 gsap.to(shapes, {
                     duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
                     backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
                     scale: 1,
                     ease: "power2.inOut",
@@ -180,8 +166,8 @@
 
                 gsap.to(shapes, {
                     duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
                     backgroundColor: (i) => i % 2 === 0 ? "#ff6f61" : "#1E90FF",
                     scale: 1,
                     ease: "power2.inOut",
@@ -227,6 +213,11 @@
             function revealLogo() {
                 gsap.to(logoContainer, { duration: 1, opacity: 1, scale: 1.2, ease: "bounce.out" });
             }
+
+            // Start initial animation
+            tl.add(() => formSmile(), 2.5);
+            tl.add(() => formFlower(), 6.5);
+            tl.add(() => formCross(), 10.5);
         });
     </script>
 </body>
