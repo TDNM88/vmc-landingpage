@@ -4,67 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Playful Shape Animation</title>
-    <style>
-        body { margin: 0; overflow: hidden; background-color: white; }
-        canvas { display: block; }
-    </style>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Bắt đầu mã JavaScript
-
-        // Thiết lập cảnh, máy ảnh, và renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Tạo một hình dạng hiện đại (Dodecahedron)
-        const geometry = new THREE.DodecahedronGeometry();
-        const material = new THREE.MeshPhongMaterial({ color: 0x1E90FF });
-        const shape = new THREE.Mesh(geometry, material);
-        scene.add(shape);
-
-        // Ánh sáng
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(5, 5, 5).normalize();
-        scene.add(light);
-
-        camera.position.z = 5;
-
-        // Biến lưu trữ thời gian bắt đầu
-        let startTime = Date.now();
-
-        // Hàm animate
-        function animate() {
-            requestAnimationFrame(animate);
-
-            let elapsedTime = (Date.now() - startTime) / 1000;
-
-            // Kết thúc sau 4 giây
-            if (elapsedTime > 4) return;
-
-            // Cập nhật vị trí và xoay của hình dạng
-            shape.rotation.x += 0.1;
-            shape.rotation.y += 0.1;
-            shape.position.x = Math.sin(elapsedTime * 10) * 2;
-            shape.position.y = Math.cos(elapsedTime * 10) * 2;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Điều chỉnh kích thước renderer khi kích thước cửa sổ thay đổi
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Kết thúc mã JavaScript
-    </script>
+   <script
+	type="module"
+	 src="https://gradio.s3-us-west-2.amazonaws.com/3.48.0/gradio.js"></script>
+    <gradio-app src="https://tdn-m-function-vmcbeta.hf.space"></gradio-app>
 </body>
 </html>
