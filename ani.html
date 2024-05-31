@@ -94,7 +94,7 @@
             // Animation timeline
             const tl = gsap.timeline({ delay: 0.5 });
 
-            // Animate shapes to random positions
+            // Initial appearance and random movement of shapes
             tl.to(shapes, {
                 duration: 2,
                 x: () => Math.random() * 200 - 100,
@@ -106,87 +106,126 @@
                     grid: [10, 6],
                     from: "center",
                 },
+                ease: "sine.inOut"
+            })
+            .to(shapes, {
+                duration: 4,
+                x: () => Math.random() * 200 - 100,
+                y: () => Math.random() * 200 - 100,
+                rotation: 720,
+                scale: 1.5,
+                stagger: {
+                    amount: 1,
+                    grid: [10, 6],
+                    from: "center",
+                },
                 ease: "sine.inOut",
-                onComplete: formFlower
-            });
+                onComplete: formSmile
+            }, "+=0.5");
+
+            // Function to form a smiley face shape
+            function formSmile() {
+                const positions = [
+                    { x: -60, y: -60 }, { x: 60, y: -60 }, // Eyes
+                    { x: -30, y: 30 }, { x: 0, y: 45 }, { x: 30, y: 30 }, // Smile
+                    { x: -15, y: 30 }, { x: 15, y: 30 }
+                ];
+
+                gsap.to(shapes, {
+                    duration: 4,
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
+                    backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
+                    scale: 1,
+                    ease: "power2.inOut",
+                    stagger: {
+                        amount: 2,
+                        onComplete: formFlower
+                    }
+                });
+            }
 
             // Function to form a flower shape
             function formFlower() {
                 const positions = [
                     { x: 0, y: -150 }, { x: -75, y: -75 }, { x: 75, y: -75 },
                     { x: -150, y: 0 }, { x: 0, y: 0 }, { x: 150, y: 0 },
-                    { x: -75, y: 75 }, { x: 75, y: 75 }, { x: 0, y: 150 },
-                    { x: 75, y: -150 }, { x: -75, y: -150 }, { x: -75, y: 150 },
-                    { x: 75, y: 150 }, { x: 150, y: -75 }, { x: 150, y: 75 },
-                    { x: -150, y: -75 }, { x: -150, y: 75 }
+                    { x: -75, y: 75 }, { x: 75, y: 75 }, { x: 0, y: 150 }
                 ];
 
                 gsap.to(shapes, {
-                    duration: 3,
-                    x: (i) => positions[i % positions.length].x,
-                    y: (i) => positions[i % positions.length].y,
+                    duration: 4,
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
                     backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
                     scale: 1,
                     ease: "power2.inOut",
                     stagger: {
                         amount: 2,
-                        onComplete: formCar
+                        onComplete: formCross
                     }
                 });
             }
 
-            // Function to form a toy car shape
-            function formCar() {
+            // Function to form a medical cross shape
+            function formCross() {
                 const positions = [
-                    { x: -100, y: -50 }, { x: -50, y: -50 }, { x: 0, y: -50 },
-                    { x: 50, y: -50 }, { x: 100, y: -50 }, { x: -100, y: 0 },
-                    { x: -50, y: 0 }, { x: 0, y: 0 }, { x: 50, y: 0 },
-                    { x: 100, y: 0 }, { x: -75, y: 50 }, { x: 75, y: 50 },
-                    { x: -75, y: 100 }, { x: 75, y: 100 }
+                    { x: -30, y: -90 }, { x: 30, y: -90 },
+                    { x: -30, y: -30 }, { x: 30, y: -30 },
+                    { x: -90, y: -30 }, { x: 90, y: -30 },
+                    { x: -30, y: 30 }, { x: 30, y: 30 },
+                    { x: -90, y: 30 }, { x: 90, y: 30 },
+                    { x: -30, y: 90 }, { x: 30, y: 90 }
                 ];
 
                 gsap.to(shapes, {
-                    duration: 3,
-                    x: (i) => positions[i % positions.length].x,
-                    y: (i) => positions[i % positions.length].y,
+                    duration: 4,
+                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 200 - 100),
+                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 200 - 100),
                     backgroundColor: (i) => i % 2 === 0 ? "#ff6f61" : "#1E90FF",
                     scale: 1,
                     ease: "power2.inOut",
                     stagger: {
                         amount: 2,
-                        onComplete: formBall
+                        onComplete: blinkCross
                     }
                 });
             }
 
-            // Function to form a soccer ball shape
-            function formBall() {
+            // Function to make the cross blink
+            function blinkCross() {
                 const positions = [
-                    { x: 0, y: -150 }, { x: 50, y: -130 }, { x: 100, y: -100 },
-                    { x: 130, y: -50 }, { x: 150, y: 0 }, { x: 130, y: 50 },
-                    { x: 100, y: 100 }, { x: 50, y: 130 }, { x: 0, y: 150 },
-                    { x: -50, y: 130 }, { x: -100, y: 100 }, { x: -130, y: 50 },
-                    { x: -150, y: 0 }, { x: -130, y: -50 }, { x: -100, y: -100 },
-                    { x: -50, y: -130 }
+                    { x: -30, y: -90 }, { x: 30, y: -90 },
+                    { x: -30, y: -30 }, { x: 30, y: -30 },
+                    { x: -90, y: -30 }, { x: 90, y: -30 },
+                    { x: -30, y: 30 }, { x: 30, y: 30 },
+                    { x: -90, y: 30 }, { x: 90, y: 30 },
+                    { x: -30, y: 90 }, { x: 30, y: 90 }
                 ];
 
-                gsap.to(shapes, {
-                    duration: 3,
-                    x: (i) => positions[i % positions.length].x,
-                    y: (i) => positions[i % positions.length].y,
-                    backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
-                    scale: 1,
-                    ease: "power2.inOut",
-                    stagger: {
-                        amount: 2,
+                const crossShapes = shapes.slice(0, positions.length);
+
+                gsap.timeline()
+                    .to(crossShapes, {
+                        duration: 0.5,
+                        backgroundColor: "#ffffff",
+                        stagger: {
+                            each: 0.1,
+                            repeat: 2,
+                            yoyo: true
+                        }
+                    })
+                    .to(crossShapes, {
+                        duration: 0.5,
+                        opacity: 0,
+                        ease: "power2.inOut",
                         onComplete: revealLogo
-                    }
-                });
+                    }, "+=0.5");
             }
 
             // Function to reveal the logo
             function revealLogo() {
-                gsap.to(logoContainer, { duration: 3, opacity: 1, scale: 1.2, ease: "bounce.out" });
+                gsap.to(logoContainer, { duration: 1, opacity: 1, scale: 1.2, ease: "bounce.out" });
             }
         });
     </script>
