@@ -29,8 +29,8 @@
 
         .shape {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 30px;
+            height: 30px;
             background: #ff6f61; /* Orange color */
             border-radius: 15%;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -66,7 +66,7 @@
 <body>
     <div class="shapes-container" id="shapesContainer"></div>
     <div class="logo-container" id="logoContainer">
-        <img src="/images/logo.png" alt="Logo">
+        <img src="images/logo.png" alt="Logo">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
@@ -78,7 +78,7 @@
 
             // Function to create shapes
             function createShapes() {
-                for (let i = 0; i < 20; i++) {
+                for (let i = 0; i < 60; i++) { // Increased number of shapes to 60
                     const shape = document.createElement('div');
                     shape.className = `shape ${i % 2 === 0 ? 'circle' : ''}`;
                     shape.style.top = `${Math.random() * 100}%`;
@@ -103,37 +103,90 @@
                 scale: 1.5,
                 stagger: {
                     amount: 1,
-                    grid: [5, 4],
+                    grid: [10, 6],
                     from: "center",
                 },
                 ease: "sine.inOut",
-                onComplete: formShapes
+                onComplete: formFlower
             });
 
-            // Function to form shapes
-            function formShapes() {
+            // Function to form a flower shape
+            function formFlower() {
                 const positions = [
                     { x: 0, y: -150 }, { x: -75, y: -75 }, { x: 75, y: -75 },
                     { x: -150, y: 0 }, { x: 0, y: 0 }, { x: 150, y: 0 },
-                    { x: -75, y: 75 }, { x: 75, y: 75 }, { x: 0, y: 150 }
+                    { x: -75, y: 75 }, { x: 75, y: 75 }, { x: 0, y: 150 },
+                    { x: 75, y: -150 }, { x: -75, y: -150 }, { x: -75, y: 150 },
+                    { x: 75, y: 150 }, { x: 150, y: -75 }, { x: 150, y: 75 },
+                    { x: -150, y: -75 }, { x: -150, y: 75 }
                 ];
 
                 gsap.to(shapes, {
-                    duration: 1.5,
+                    duration: 3,
                     x: (i) => positions[i % positions.length].x,
                     y: (i) => positions[i % positions.length].y,
                     backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
                     scale: 1,
                     ease: "power2.inOut",
                     stagger: {
-                        amount: 1.5,
+                        amount: 2,
+                        onComplete: formCar
+                    }
+                });
+            }
+
+            // Function to form a toy car shape
+            function formCar() {
+                const positions = [
+                    { x: -100, y: -50 }, { x: -50, y: -50 }, { x: 0, y: -50 },
+                    { x: 50, y: -50 }, { x: 100, y: -50 }, { x: -100, y: 0 },
+                    { x: -50, y: 0 }, { x: 0, y: 0 }, { x: 50, y: 0 },
+                    { x: 100, y: 0 }, { x: -75, y: 50 }, { x: 75, y: 50 },
+                    { x: -75, y: 100 }, { x: 75, y: 100 }
+                ];
+
+                gsap.to(shapes, {
+                    duration: 3,
+                    x: (i) => positions[i % positions.length].x,
+                    y: (i) => positions[i % positions.length].y,
+                    backgroundColor: (i) => i % 2 === 0 ? "#ff6f61" : "#1E90FF",
+                    scale: 1,
+                    ease: "power2.inOut",
+                    stagger: {
+                        amount: 2,
+                        onComplete: formBall
+                    }
+                });
+            }
+
+            // Function to form a soccer ball shape
+            function formBall() {
+                const positions = [
+                    { x: 0, y: -150 }, { x: 50, y: -130 }, { x: 100, y: -100 },
+                    { x: 130, y: -50 }, { x: 150, y: 0 }, { x: 130, y: 50 },
+                    { x: 100, y: 100 }, { x: 50, y: 130 }, { x: 0, y: 150 },
+                    { x: -50, y: 130 }, { x: -100, y: 100 }, { x: -130, y: 50 },
+                    { x: -150, y: 0 }, { x: -130, y: -50 }, { x: -100, y: -100 },
+                    { x: -50, y: -130 }
+                ];
+
+                gsap.to(shapes, {
+                    duration: 3,
+                    x: (i) => positions[i % positions.length].x,
+                    y: (i) => positions[i % positions.length].y,
+                    backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
+                    scale: 1,
+                    ease: "power2.inOut",
+                    stagger: {
+                        amount: 2,
                         onComplete: revealLogo
                     }
                 });
             }
 
+            // Function to reveal the logo
             function revealLogo() {
-                gsap.to(logoContainer, { duration: 1.5, opacity: 1, scale: 1.2, ease: "bounce.out" });
+                gsap.to(logoContainer, { duration: 3, opacity: 1, scale: 1.2, ease: "bounce.out" });
             }
         });
     </script>
