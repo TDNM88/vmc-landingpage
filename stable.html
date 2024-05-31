@@ -4,13 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stable Des</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .module {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .module h2 {
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
-    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js"></script>
-    <gradio-app src="https://tdn-m-stablezip.hf.space"></gradio-app>
-    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.4.0/gradio.js"></script>
-    <gradio-app src="https://tdn-m-text-to-image.hf.space"></gradio-app>
-    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.28.3/gradio.js"></script>
-    <gradio-app src="https://tdn-m-materiachange.hf.space"></gradio-app>
+    <div class="container">
+        <div class="module">
+            <h2>Module 1: Stable Des</h2>
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js"></script>
+            <gradio-app src="https://tdn-m-stablezip.hf.space"></gradio-app>
+        </div>
+        <div class="module">
+            <h2>Module 2: Text to Image</h2>
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.4.0/gradio.js"></script>
+            <gradio-app src="https://tdn-m-text-to-image.hf.space"></gradio-app>
+        </div>
+        <div class="module">
+            <h2>Module 3: Material Change</h2>
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.28.3/gradio.js"></script>
+            <gradio-app src="https://tdn-m-materiachange.hf.space"></gradio-app>
+        </div>
+    </div>
 </body>
 </html>
