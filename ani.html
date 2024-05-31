@@ -3,222 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logo Intro Animation</title>
+    <title>3D Square Animation</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .shapes-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .shape {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff6f61; /* Orange color */
-            border-radius: 15%;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            opacity: 0.8;
-            transform-style: preserve-3d;
-        }
-
-        .circle {
-            border-radius: 50%;
-            background: #1E90FF; /* Dark blue color */
-        }
-
-        .logo-container {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 50%;
-            overflow: hidden;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        .logo-container img {
-            width: 80%;
-            height: auto;
-        }
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
     </style>
 </head>
 <body>
-    <div class="shapes-container" id="shapesContainer"></div>
-    <div class="logo-container" id="logoContainer">
-        <img src="images/logo.png" alt="Logo">
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const shapesContainer = document.getElementById('shapesContainer');
-            const logoContainer = document.getElementById('logoContainer');
-            const shapes = [];
+        // Bắt đầu mã JavaScript
 
-            // Function to create shapes
-            function createShapes() {
-                for (let i = 0; i < 180; i++) { // Increased number of shapes to 180
-                    const shape = document.createElement('div');
-                    shape.className = `shape ${i % 2 === 0 ? 'circle' : ''}`;
-                    shape.style.top = `${Math.random() * 100}%`;
-                    shape.style.left = `${Math.random() * 100}%`;
-                    shapes.push(shape);
-                    shapesContainer.appendChild(shape);
-                }
-            }
+        // Thiết lập cảnh, máy ảnh, và renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-            // Create initial shapes
-            createShapes();
+        // Tạo một hình lập phương
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
 
-            // Animation timeline
-            const tl = gsap.timeline({ delay: 0.5 });
+        camera.position.z = 5;
 
-            // Initial appearance and random movement of shapes
-            tl.to(shapes, {
-                duration: 2.5,
-                x: () => Math.random() * 400 - 200,
-                y: () => Math.random() * 400 - 200,
-                rotation: 720,
-                scale: 1.5,
-                stagger: {
-                    amount: 2,
-                    grid: [15, 12],
-                    from: "center",
-                },
-                ease: "sine.inOut"
-            });
+        // Biến lưu trữ thời gian bắt đầu
+        let startTime = Date.now();
 
-            // Function to form a smiley face shape
-            function formSmile() {
-                const positions = [
-                    { x: -60, y: -60 }, { x: 60, y: -60 }, // Eyes
-                    { x: -30, y: 30 }, { x: 0, y: 45 }, { x: 30, y: 30 }, // Smile
-                    { x: -15, y: 30 }, { x: 15, y: 30 }
-                ];
+        // Hàm animate
+        function animate() {
+            requestAnimationFrame(animate);
 
-                gsap.to(shapes, {
-                    duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
-                    backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
-                    scale: 1,
-                    ease: "power2.inOut",
-                    stagger: {
-                        amount: 2,
-                        onComplete: formFlower
-                    }
-                });
-            }
+            let elapsedTime = (Date.now() - startTime) / 1000;
 
-            // Function to form a flower shape
-            function formFlower() {
-                const positions = [
-                    { x: 0, y: -150 }, { x: -75, y: -75 }, { x: 75, y: -75 },
-                    { x: -150, y: 0 }, { x: 0, y: 0 }, { x: 150, y: 0 },
-                    { x: -75, y: 75 }, { x: 75, y: 75 }, { x: 0, y: 150 }
-                ];
+            // Kết thúc sau 4 giây
+            if (elapsedTime > 4) return;
 
-                gsap.to(shapes, {
-                    duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
-                    backgroundColor: (i) => i % 2 === 0 ? "#1E90FF" : "#ff6f61",
-                    scale: 1,
-                    ease: "power2.inOut",
-                    stagger: {
-                        amount: 2,
-                        onComplete: formCross
-                    }
-                });
-            }
+            // Cập nhật vị trí và xoay của hình lập phương
+            cube.rotation.x += 0.1;
+            cube.rotation.y += 0.1;
+            cube.position.x = Math.sin(elapsedTime * 10) * 2;
+            cube.position.y = Math.cos(elapsedTime * 10) * 2;
 
-            // Function to form a medical cross shape
-            function formCross() {
-                const positions = [
-                    { x: -30, y: -90 }, { x: 30, y: -90 },
-                    { x: -30, y: -30 }, { x: 30, y: -30 },
-                    { x: -90, y: -30 }, { x: 90, y: -30 },
-                    { x: -30, y: 30 }, { x: 30, y: 30 },
-                    { x: -90, y: 30 }, { x: 90, y: 30 },
-                    { x: -30, y: 90 }, { x: 30, y: 90 }
-                ];
+            renderer.render(scene, camera);
+        }
 
-                gsap.to(shapes, {
-                    duration: 4,
-                    x: (i) => positions[i % positions.length]?.x || (Math.random() * 400 - 200),
-                    y: (i) => positions[i % positions.length]?.y || (Math.random() * 400 - 200),
-                    backgroundColor: (i) => i % 2 === 0 ? "#ff6f61" : "#1E90FF",
-                    scale: 1,
-                    ease: "power2.inOut",
-                    stagger: {
-                        amount: 2,
-                        onComplete: blinkCross
-                    }
-                });
-            }
+        animate();
 
-            // Function to make the cross blink
-            function blinkCross() {
-                const positions = [
-                    { x: -30, y: -90 }, { x: 30, y: -90 },
-                    { x: -30, y: -30 }, { x: 30, y: -30 },
-                    { x: -90, y: -30 }, { x: 90, y: -30 },
-                    { x: -30, y: 30 }, { x: 30, y: 30 },
-                    { x: -90, y: 30 }, { x: 90, y: 30 },
-                    { x: -30, y: 90 }, { x: 30, y: 90 }
-                ];
-
-                const crossShapes = shapes.slice(0, positions.length);
-
-                gsap.timeline()
-                    .to(crossShapes, {
-                        duration: 0.5,
-                        backgroundColor: "#ffffff",
-                        stagger: {
-                            each: 0.1,
-                            repeat: 2,
-                            yoyo: true
-                        }
-                    })
-                    .to(crossShapes, {
-                        duration: 0.5,
-                        opacity: 0,
-                        ease: "power2.inOut",
-                        onComplete: revealLogo
-                    }, "+=0.5");
-            }
-
-            // Function to reveal the logo
-            function revealLogo() {
-                gsap.to(logoContainer, { duration: 1, opacity: 1, scale: 1.2, ease: "bounce.out" });
-            }
-
-            // Start initial animation
-            tl.add(() => formSmile(), 2.5);
-            tl.add(() => formFlower(), 6.5);
-            tl.add(() => formCross(), 10.5);
+        // Điều chỉnh kích thước renderer khi kích thước cửa sổ thay đổi
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // Kết thúc mã JavaScript
     </script>
 </body>
 </html>
