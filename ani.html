@@ -11,24 +11,35 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #000;
+            background-color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .network-container {
+        .shapes-container {
             position: relative;
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
-        .line {
+        .shape {
             position: absolute;
-            width: 2px;
-            height: 100%;
-            background: #fff;
-            opacity: 0.7;
+            width: 50px;
+            height: 50px;
+            background: #ff6f61;
+            border-radius: 15%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+            transform-style: preserve-3d;
+        }
+
+        .circle {
+            border-radius: 50%;
         }
 
         .logo-container {
@@ -42,6 +53,7 @@
             border-radius: 50%;
             overflow: hidden;
             opacity: 0;
+            z-index: 10;
         }
 
         .logo-container img {
@@ -51,68 +63,65 @@
     </style>
 </head>
 <body>
-    <div class="network-container" id="networkContainer"></div>
+    <div class="shapes-container" id="shapesContainer"></div>
     <div class="logo-container" id="logoContainer">
-        <img src="/images/logo.png" alt="Logo">
+        <img src="your-logo.png" alt="Logo">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const networkContainer = document.getElementById('networkContainer');
+            const shapesContainer = document.getElementById('shapesContainer');
             const logoContainer = document.getElementById('logoContainer');
+            const shapes = [];
 
-            // Function to create lines
-            function createLines() {
+            // Function to create shapes
+            function createShapes() {
                 for (let i = 0; i < 20; i++) {
-                    const line = document.createElement('div');
-                    line.className = 'line';
-                    line.style.left = `${i * 5}%`;
-                    networkContainer.appendChild(line);
-                }
-                for (let i = 0; i < 20; i++) {
-                    const line = document.createElement('div');
-                    line.className = 'line';
-                    line.style.width = '100%';
-                    line.style.height = '2px';
-                    line.style.top = `${i * 5}%`;
-                    networkContainer.appendChild(line);
+                    const shape = document.createElement('div');
+                    shape.className = `shape ${i % 2 === 0 ? 'circle' : ''}`;
+                    shape.style.top = `${Math.random() * 100}%`;
+                    shape.style.left = `${Math.random() * 100}%`;
+                    shapes.push(shape);
+                    shapesContainer.appendChild(shape);
                 }
             }
 
-            // Create initial lines
-            createLines();
+            // Create initial shapes
+            createShapes();
 
             // Animation timeline
             const tl = gsap.timeline({ delay: 0.5 });
 
-            // Animate lines
-            tl.to(".line", {
+            // Animate shapes
+            tl.to(shapes, {
                 duration: 2,
-                x: "random(-200, 200)",
-                y: "random(-200, 200)",
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
+                x: () => Math.random() * 200 - 100,
+                y: () => Math.random() * 200 - 100,
+                rotation: 360,
+                scale: 1.5,
                 stagger: {
-                    amount: 2,
-                }
+                    amount: 1,
+                    grid: [5, 4],
+                    from: "center",
+                },
+                ease: "sine.inOut",
+                onComplete: highlightShapes
             });
 
-            // Highlight and transform lines to form the logo
-            tl.to(".line", {
-                duration: 1.5,
-                backgroundColor: "#ff0",
-                scale: 2,
-                ease: "power2.inOut",
-                stagger: {
-                    amount: 1.5,
-                    onComplete: () => {
-                        // Fade in the logo
-                        gsap.to("#logoContainer", { duration: 1.5, opacity: 1, scale: 1.2, ease: "bounce.out" });
-                    }
-                }
-            });
+            function highlightShapes() {
+                gsap.to(shapes, {
+                    duration: 1.5,
+                    backgroundColor: "#ff0",
+                    scale: 2,
+                    ease: "power2.inOut",
+                    onComplete: revealLogo
+                });
+            }
+
+            function revealLogo() {
+                gsap.to(logoContainer, { duration: 1.5, opacity: 1, scale: 1.2, ease: "bounce.out" });
+            }
         });
     </script>
 </body>
