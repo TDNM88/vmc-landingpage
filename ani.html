@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Animation</title>
+    <title>Logo Intro Animation</title>
     <style>
         body, html {
             margin: 0;
@@ -11,167 +11,109 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .block-container {
-            position: absolute;
+            background-color: #000;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
-            perspective: 1000px;
         }
 
-        .block {
-            width: 40px;
-            height: 40px;
-            margin: 5px;
-            background-color: transparent;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 0.3s;
+        .network-container {
+            position: relative;
+            width: 80%;
+            height: 80%;
         }
 
-        .block:hover {
-            transform: rotateY(360deg);
-        }
-
-        #cross {
-            display: none;
+        .line {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            transform: translate(-50%, -50%);
-            background-color: white;
+            width: 2px;
+            height: 100%;
+            background: #fff;
+            opacity: 0.7;
+        }
+
+        .logo-container {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 50%;
+            overflow: hidden;
             opacity: 0;
-            z-index: 100;
         }
 
-        #cross::before, #cross::after {
-            content: '';
-            position: absolute;
-            background-color: white;
-        }
-
-        #cross::before {
-            width: 100%;
-            height: 20%;
-            top: 40%;
-            left: 0;
-        }
-
-        #cross::after {
-            height: 100%;
-            width: 20%;
-            left: 40%;
-            top: 0;
+        .logo-container img {
+            width: 80%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="screen" class="layer"></div>
-        <div id="lines" class="layer"></div>
-        <div id="verticalScreen" class="layer"></div>
-        <div id="verticalLines" class="layer"></div>
-        <div id="blockContainer" class="layer block-container"></div>
-        <div id="cross"></div>
+    <div class="network-container" id="networkContainer"></div>
+    <div class="logo-container" id="logoContainer">
+        <img src="/images/logo.png" alt="Logo">
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script>
-    // Màn hình đen mở đầu rồi dần chuyển sang màu trắng trong 1.5 giây
-    gsap.to("#screen", {
-        duration: 1.5,
-        backgroundColor: "#f0f0f0",
-        onComplete: startLineAnimation
-    });
+        document.addEventListener("DOMContentLoaded", () => {
+            const networkContainer = document.getElementById('networkContainer');
+            const logoContainer = document.getElementById('logoContainer');
 
-    // Animation các dòng ngang và dọc
-    function startLineAnimation() {
-        createLines();
-        const lines = document.querySelectorAll('.line');
-        gsap.to(lines, {
-            duration: 3,
-            x: '100%',
-            stagger: {
-                each: 0.1,
-                yoyo: true,
-                repeat: -1,
-                ease: 'power1.inOut'
+            // Function to create lines
+            function createLines() {
+                for (let i = 0; i < 20; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'line';
+                    line.style.left = `${i * 5}%`;
+                    networkContainer.appendChild(line);
+                }
+                for (let i = 0; i < 20; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'line';
+                    line.style.width = '100%';
+                    line.style.height = '2px';
+                    line.style.top = `${i * 5}%`;
+                    networkContainer.appendChild(line);
+                }
             }
-        });
-        setTimeout(startVerticalAnimations, 500);
-    }
 
-    // Tạo các dòng ngang và dọc
-    function createLines() {
-        const linesContainer = document.getElementById('lines');
-        const verticalLinesContainer = document.getElementById('verticalLines');
+            // Create initial lines
+            createLines();
 
-        for (let i = 0; i < 20; i++) {
-            const line = document.createElement('div');
-            line.className = 'line';
-            line.style.top = `${i * 5}vh`;
-            linesContainer.appendChild(line);
-        }
+            // Animation timeline
+            const tl = gsap.timeline({ delay: 0.5 });
 
-        for (let i = 0; i < 20; i++) {
-            const line = document.createElement('div');
-            line.className = 'vertical-line';
-            line.style.left = `${i * 5}vw`;
-            verticalLinesContainer.appendChild(line);
-        }
-    }
-
-    function startVerticalAnimations() {
-        gsap.to("#verticalScreen", {
-            duration: 1.5,
-            backgroundColor: "transparent",
-            onComplete: startVerticalLineAnimation
-        });
-
-        function startVerticalLineAnimation() {
-            const lines = document.querySelectorAll('.vertical-line');
-            gsap.to(lines, {
-                duration: 3,
-                y: '100%',
+            // Animate lines
+            tl.to(".line", {
+                duration: 2,
+                x: "random(-200, 200)",
+                y: "random(-200, 200)",
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
                 stagger: {
-                    each: 0.1,
-                    yoyo: true,
-                    repeat: -1,
-                    ease: 'power1.inOut'
+                    amount: 2,
                 }
             });
-            createBlockEffect();
-        }
-    }
 
-    // Tạo hiệu ứng khối
-    function createBlockEffect() {
-        const blockContainer = document.getElementById('blockContainer');
-        for (let i = 0; i < 100; i++) {
-            const block = document.createElement('div');
-            block.className = 'block';
-            blockContainer.appendChild(block);
-        }
-    }
-</script>
+            // Highlight and transform lines to form the logo
+            tl.to(".line", {
+                duration: 1.5,
+                backgroundColor: "#ff0",
+                scale: 2,
+                ease: "power2.inOut",
+                stagger: {
+                    amount: 1.5,
+                    onComplete: () => {
+                        // Fade in the logo
+                        gsap.to("#logoContainer", { duration: 1.5, opacity: 1, scale: 1.2, ease: "bounce.out" });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
