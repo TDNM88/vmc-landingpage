@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Ký/title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    "use client";
+    const { useState } = React;
+
+    function MainComponent({ showMessage, errorMessage }) {
+      const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        occupation: "",
+        desiredFeature: "",
+      });
+
+      const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (
+          !formData.fullName ||
+          !formData.email ||
+          !formData.phoneNumber ||
+          !formData.occupation ||
+          !formData.desiredFeature
+        ) {
+          alert("Vui lòng nhập đầy đủ thông tin.");
+          return;
+        }
+
+        const response = await fetch("/api/db/vmc", {
+          method: "POST",
+          body: JSON.stringify({
+            query: "SELECT `id` FROM `registrations` WHERE `email` = ?",
+            values: [formData.email],
+          }),
+        });
+        const result = await response.json();
+
+        if (result.length > 0) {
+          alert("Email đã được sử dụng. Vui lòng kiểm tra lại.");
+        } else {
+          await fetch("/api/db/vmc", {
+            method: "POST",
+            body: JSON.stringify({
+              query:
+                "INSERT INTO `registrations` (full_name, email, phone_number, occupation, desired_feature) VALUES (?, ?, ?, ?, ?)",
+              values: [
+                formData.fullName,
+                formData.email,
+                formData.phoneNumber,
+                formData.occupation,
+                formData.desiredFeature,
+              ],
+            }),
+          });
+          showMessage(true);
+        }
+      };
+
+      return (
+        <div className="w-full max-w-md mx-auto p-6 bg-white shadow-md border border-gray-200 rounded-lg">
+          <p className="text-lg font-medium text-[#121212] font-crimson-text mb-6">
+            Cảm ơn bạn đã dành sự quan tâm tới VMC - ứng dụng MC ảo tích hợp công
+            nghệ A.I. Do nhu cầu sử dụng lớn, nên trong đợt phát hành đầu tiên, VMC
+            sẽ chỉ cung cấp khoảng 300 key cho khách hàng đăng ký sớm nhất có thể
+            trải nghiệm và sử dụng dịch vụ. Xin mời bạn điền thông tin vào bảng đăng
+            ký dưới đây.
+          </p>
+          {showMessage ? (
+            <div className="text-center">
+              <p className="text-[#121212] font-medium font-crimson-text">
+                Cảm ơn bạn đã đăng ký nhận key sử dụng VMC. Chúng tôi sẽ gửi tới bạn
+                trong thời gian sớm nhất. Mọi thắc mắc xin vui lòng liên hệ{" "}
+                <a href="mailto:vmc@tdn-m.com" className="text-[#1a73e8]">
+                  vmc@tdn-m.com
+                </a>
+                .
+              </p>
+            </div>
+          ) : (
+            <form
+              id="registrationForm"
+              className="space-y-4"
+              onSubmit={handleSubmit}
+            >
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Họ & Tên
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Số điện thoại
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Nghề nghiệp
+                </label>
+                <input
+                  type="text"
+                  name="occupation"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                  value={formData.occupation}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Bạn muốn dùng tính năng nào của ứng dụng VMC nhất
+                </label>
+                <input
+                  type="text"
+                  name="desiredFeature"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                  value={formData.desiredFeature}
+                  onChange={handleChange}
+                />
+              </div>
+              {errorMessage && (
+                <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
+              )}
+              <button
+                type="submit"
+                className="w-full bg-[#1a73e8] text-white p-2 rounded-md"
+              >
+                Xác nhận
+              </button>
+            </form>
+          )}
+        </div>
+      );
+    }
+
+    function StoryComponent() {
+      const [showMessage, setShowMessage] = useState(false);
+      const [errorMessage, setErrorMessage] = useState("");
+
+      return (
+        <div className="p-4 space-y-4">
+          <MainComponent showMessage={showMessage} errorMessage={errorMessage} />
+          <MainComponent showMessage={true} errorMessage={""} />
+          <MainComponent
+            showMessage={false}
+            errorMessage={
+              "Email đã được sử dụng hoặc thông tin không đầy đủ. Vui lòng kiểm tra lại."
+            }
+          />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<StoryComponent />, document.getElementById('root'));
+  </script>
+</body>
+</html>
