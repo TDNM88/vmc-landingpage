@@ -30,55 +30,55 @@
   </div>
 
   <script>
-    document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
+  document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
-      const fullName = document.getElementById('fullName').value;
-      const email = document.getElementById('email').value;
-      const phoneNumber = document.getElementById('phoneNumber').value;
-      const occupation = document.getElementById('occupation').value;
-      const desiredFeature = document.getElementById('desiredFeature').value;
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const occupation = document.getElementById('occupation').value;
+    const desiredFeature = document.getElementById('desiredFeature').value;
 
-      if (!fullName || !email || !phoneNumber || !occupation || !desiredFeature) {
-        alert('Vui lòng nhập đầy đủ thông tin.');
-        return;
-      }
+    if (!fullName || !email || !phoneNumber || !occupation || !desiredFeature) {
+      alert('Vui lòng nhập đầy đủ thông tin.');
+      return;
+    }
 
-      try {
-        const checkEmailResponse = await fetch('https://dangkyapi.vercel.app/api/check-email', {
+    try {
+      const checkEmailResponse = await fetch('https://your-vercel-deployment-url/api/check-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const emailResult = await checkEmailResponse.json();
+
+      if (emailResult.length > 0) {
+        alert('Email đã được sử dụng. Vui lòng kiểm tra lại.');
+      } else {
+        const addRegistrationResponse = await fetch('https://your-vercel-deployment-url/api/add-registration', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({
+            fullName,
+            email,
+            phoneNumber,
+            occupation,
+            desiredFeature
+          })
         });
-        const emailResult = await checkEmailResponse.json();
+        const registrationResult = await addRegistrationResponse.json();
 
-        if (emailResult.length > 0) {
-          alert('Email đã được sử dụng. Vui lòng kiểm tra lại.');
-        } else {
-          const addRegistrationResponse = await fetch('https://dangkyapi.vercel.app/api/add-registration', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              fullName,
-              email,
-              phoneNumber,
-              occupation,
-              desiredFeature
-            })
-          });
-          const registrationResult = await addRegistrationResponse.json();
-
-          document.getElementById('message').innerText = 'Cảm ơn bạn đã đăng ký nhận key sử dụng VMC. Chúng tôi sẽ gửi tới bạn trong thời gian sớm nhất.';
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+        document.getElementById('message').innerText = 'Cảm ơn bạn đã đăng ký nhận key sử dụng VMC. Chúng tôi sẽ gửi tới bạn trong thời gian sớm nhất.';
       }
-    });
-  </script>
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+    }
+  });
+</script>
 </body>
 </html>
