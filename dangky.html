@@ -44,34 +44,39 @@
         return;
       }
 
-      const checkEmailResponse = await fetch('YOUR_VERCEL_URL/api/check-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-      });
-      const emailResult = await checkEmailResponse.json();
-
-      if (emailResult.length > 0) {
-        alert('Email đã được sử dụng. Vui lòng kiểm tra lại.');
-      } else {
-        const addRegistrationResponse = await fetch('YOUR_VERCEL_URL/api/add-registration', {
+      try {
+        const checkEmailResponse = await fetch('https://dangkyapi.vercel.app/api/check-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            fullName,
-            email,
-            phoneNumber,
-            occupation,
-            desiredFeature
-          })
+          body: JSON.stringify({ email })
         });
-        const registrationResult = await addRegistrationResponse.json();
-        
-        document.getElementById('message').innerText = 'Cảm ơn bạn đã đăng ký nhận key sử dụng VMC. Chúng tôi sẽ gửi tới bạn trong thời gian sớm nhất.';
+        const emailResult = await checkEmailResponse.json();
+
+        if (emailResult.length > 0) {
+          alert('Email đã được sử dụng. Vui lòng kiểm tra lại.');
+        } else {
+          const addRegistrationResponse = await fetch('https://dangkyapi.vercel.app/api/add-registration', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              fullName,
+              email,
+              phoneNumber,
+              occupation,
+              desiredFeature
+            })
+          });
+          const registrationResult = await addRegistrationResponse.json();
+
+          document.getElementById('message').innerText = 'Cảm ơn bạn đã đăng ký nhận key sử dụng VMC. Chúng tôi sẽ gửi tới bạn trong thời gian sớm nhất.';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
       }
     });
   </script>
