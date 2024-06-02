@@ -97,6 +97,30 @@
             },
         });
     </script>
+    <form id="signup-form" class="email-form">
+  <input type="email" name="email" placeholder="Nhập email của bạn" required>
+  <button type="submit">ĐĂNG KÝ SỚM</button>
+</form>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = e.target.email.value;
+
+  const response = await fetch('/api/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email })
+  });
+
+  if (response.ok) {
+    window.location.href = '/thank_you.html';
+  } else {
+    alert('Đăng ký thất bại. Vui lòng thử lại.');
+  }
+});
+</script>
+
     <footer>
         <p>&copy; 2024 VMC. All rights reserved.</p>
     </footer>
