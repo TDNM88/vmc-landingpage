@@ -6,30 +6,6 @@
     <title>Tạo Video Chuyên Nghiệp Với VMC - Người Dẫn Chương Trình Ảo & Giọng Đọc Tiếng Việt Tự Nhiên</title>
     <meta name="description" content="VMC - Ứng dụng tạo video chuyên nghiệp với người dẫn chương trình ảo và giọng đọc tiếng Việt tự nhiên. Tạo video dễ dàng và nhanh chóng cho doanh nghiệp và nhà sáng tạo nội dung.">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .nav-button.gallery-button {
-            display: inline-block;
-            background-color: #ff6f61;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .nav-button.gallery-button img {
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        .nav-button.gallery-button:hover {
-            background-color: #ff5733;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-    </style>
 </head>
 <body>
     <header class="main-header">
@@ -40,7 +16,7 @@
                     <img src="https://cdn-uploads.huggingface.co/production/uploads/64e5535467a759dd7143007b/mwHB6A5lbrL9IGZgcOMT-.png" alt="Company">
                 </a>
                 <a href="/gallery.html" class="nav-button gallery-button">
-                    <img src="/images/pattern1.png" alt="Gallery"> Gallery
+                    <img src="h/images/pattern1.png" alt="Gallery" style="width:24px; height:24px;"> Gallery
                 </a>
             </nav>
         </div>
@@ -50,10 +26,10 @@
             <h1>Tạo Video Chuyên Nghiệp Với VMC</h1>
             <p>VMC - Virtual MC là ứng dụng đột phá dành cho những nhà sáng tạo nội dung, doanh nghiệp và bất kỳ ai mong muốn tạo ra những video chuyên nghiệp, ấn tượng mà không cần kỹ năng quay phim hay chỉnh sửa phức tạp. Với công nghệ AI tiên tiến, VMC giúp bạn dễ dàng tạo ra các video có người dẫn chương trình ảo, sử dụng giọng nói tiếng Việt tự nhiên, sinh động như thật. Được phát triển bởi đội ngũ chuyên gia người Việt Nam, VMC mang lại trải nghiệm video chân thực và hấp dẫn, giúp bạn truyền tải thông điệp một cách hiệu quả nhất.</p>
             <p>Sản phẩm Made in Vietnam 🇻🇳</p>
-            <div class="email-form">
-                <input type="email" placeholder="Nhập email của bạn">
-                <button>ĐĂNG KÝ SỚM</button>
-            </div>
+            <form id="signup-form" action="signup.php" method="POST" class="email-form">
+                <input type="email" name="email" placeholder="Nhập email của bạn" required>
+                <button type="submit">ĐĂNG KÝ SỚM</button>
+            </form>
             <div class="ratings">
                 <div class="rating-item">
                     <p class="rating-title">SẢN PHẨM ĐƯỢC CHỜ ĐỢI</p>
