@@ -1,254 +1,172 @@
-/* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Global Styles */
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-image: url('images/bg.jpg'); /* Thêm hình ảnh nền cho toàn trang */
-    background-size: cover; /* Điều chỉnh kích thước hình ảnh để phủ toàn bộ trang */
-    background-position: center; /* Trung tâm hình ảnh */
-    background-repeat: no-repeat; /* Không lặp lại hình ảnh */
-    background-attachment: fixed; /* Giữ hình ảnh cố định khi cuộn trang */
-    background-color: #f4f4f4; /* Màu nền mặc định nếu hình ảnh không tải được */
+    background-image: linear-gradient(to bottom, #f2f2f2, #fff);
+    font-family: Arial, sans-serif;
 }
 
-a {
-    text-decoration: none;
-}
+/* Header Styles */
 
-/* Header */
 .header {
+    background-image: url('header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.header .container {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+.header nav a {
+    margin-right: 20px;
+    text-decoration: none;
     color: #333;
 }
 
-nav {
-    display: flex;
+.header nav a:hover {
+    color: #666;
 }
 
-.nav-button {
-    margin-left: 20px;
-    color: #333;
-    display: flex;
-    align-items: center;
-}
+/* Hero Styles */
 
-.nav-button:hover {
-    color: #007bff;
-}
-
-/* Hero Section */
 .hero {
-    background-image: url('/images/hero-bg.jpg');
+    background-image: url('hero-bg.jpg');
     background-size: cover;
     background-position: center;
-    padding: 80px 0;
+    padding: 50px;
     text-align: center;
     color: #fff;
-    position: relative;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.hero .container {
-    position: relative;
-    z-index: 1;
 }
 
 .hero h1 {
-    font-size: 48px;
+    font-size: 36px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 20px;
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
+/* Email Form Styles */
+
 .email-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .email-form input[type="email"] {
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px;
     border: none;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 5px 0 0 5px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
-.email-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
+.email-form button[type="submit"] {
+    background-color: #4CAF50;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    outline: none;
+    border-radius: 10px;
+    font-size: 18px;
     cursor: pointer;
-    border-radius: 0 5px 5px 0;
-    font-size: 16px;
 }
 
-/* Ratings */
-.ratings {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
+.email-form button[type="submit"]:hover {
+    background-color: #3e8e41;
 }
 
-.rating-item {
-    display: flex;
-    align-items: center;
-}
+/* Demo Container Styles */
 
-.rating-title {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-.stars {
-    display: flex;
-    color: gold;
-}
-
-.star {
-    margin: 0 2px;
-}
-
-/* Main Content */
-main {
-    padding: 60px 0;
-}
-
-h2 {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 40px;
-}
-
-/* Demo Section */
 .demo-container {
-    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.demo-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .video-slider {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .video-slider video {
-    max-width: 32%;
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Steps Section */
+/* Steps Container Styles */
+
 .steps-container {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .step {
-    width: 20%;
+    margin-bottom: 20px;
 }
 
-/* Contact Section */
+.step h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Contact Styles */
+
 .contact {
-    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer */
+.contact h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+
 footer {
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 900px) {
-    .header {
-        flex-direction: column;
-    }
-
-    .header .container {
-        flex-direction: column;
-    }
-
-    nav {
-        margin-top: 20px;
-    }
-
-    .nav-button {
-        margin-left: 0;
-        margin-right: 20px;
-    }
-
-    .hero {
-        padding: 40px 0;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero p {
-        font-size: 18px;
-    }
-
-    .video-slider video {
-        max-width: 48%;
-    }
-
-    .steps-container {
-        flex-wrap: wrap;
-    }
-
-    .step {
-        width: 48%;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .video-slider video {
-        max-width: 100%;
-    }
-
-    .steps-container {
-        flex-direction: column;
-    }
-
-    .step {
-        width: 100%;
-    }
 }
