@@ -7,7 +7,12 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('images/background.jpg'); /* Thêm hình ảnh nền cho toàn trang */
+    background-size: cover; /* Điều chỉnh kích thước hình ảnh để phủ toàn bộ trang */
+    background-position: center; /* Trung tâm hình ảnh */
+    background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+    background-attachment: fixed; /* Giữ hình ảnh cố định khi cuộn trang */
+    background-color: #f4f4f4; /* Màu nền mặc định nếu hình ảnh không tải được */
 }
 
 a {
