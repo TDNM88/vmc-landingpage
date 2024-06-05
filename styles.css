@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('images/background.jpg'); /* Thêm hình ảnh nền cho toàn trang */
+    background-image: url('images/bg.jpg'); /* Thêm hình ảnh nền cho toàn trang */
     background-size: cover; /* Điều chỉnh kích thước hình ảnh để phủ toàn bộ trang */
     background-position: center; /* Trung tâm hình ảnh */
     background-repeat: no-repeat; /* Không lặp lại hình ảnh */
