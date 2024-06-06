@@ -124,21 +124,27 @@ header nav ul li a {
 /* Apps section styling */
 .apps {
     padding: 50px 0;
-    background: url('images/apps-bg.jpg') no-repeat center center/cover;
+    background: #f9f9f9;
     position: relative;
     text-align: center;
-    color: #fff;
+    color: #333;
 }
 
 .apps .overlay {
     position: relative;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.9);
     padding: 50px 0;
 }
 
 .apps .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+.apps h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
 }
 
 .app-list {
@@ -148,26 +154,35 @@ header nav ul li a {
 }
 
 .app-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px;
-    text-align: center;
+    padding: 20px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.app-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .app-item h3 {
-    margin: 10px 0 5px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+.app-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .app-item p {
-    color: #ddd;
-}
-
-/* Footer styling */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-footer p {
-    margin: 0;
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
 }
