@@ -188,12 +188,10 @@ main {
   33% { transform: translateX(-100%); }
   66% { transform: translateX(-200%); }
   100% { transform: translateX(0); }
-}
-
-.slider {
-  animation: slide 9s infinite;
   }
-}
+  .slider {
+    animation: slide 9s infinite;
+  }
 
 /* About section styling */
 .about {
