@@ -24,14 +24,14 @@ header {
 
 /* General styles for header buttons */
 .header .button {
-  padding: 6px 10px; /* Decrease padding */
+  padding: 3px 5px; /* Decrease padding */
   font-size: 12px;   /* Decrease font size */
 }
 
 /* Specific styles for mobile screens */
 @media (max-width: 600px) {
   .header .button {
-    padding: 4px 6px; /* Further decrease padding */
+    padding: 2px 3px; /* Further decrease padding */
     font-size: 10px;  /* Further decrease font size */
   }
 
