@@ -132,7 +132,7 @@ header nav ul li a {
 
 .apps .overlay {
     position: relative;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 0, 255, 0.5);
     padding: 50px 0;
 }
 
