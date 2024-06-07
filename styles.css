@@ -46,13 +46,6 @@ header {
   }
 }
 
-/* Adjust the size of the icons in the sliders */
-.slide img {
-  width: 30px; /* Reduce width */
-  height: 30px; /* Reduce height */
-  margin-bottom: 10px; /* Adjust margin as needed */
-}
-
 header nav ul {
     display: flex;
     justify-content: flex-end;
@@ -112,6 +105,7 @@ header nav ul li a:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Main content styling */
 main {
