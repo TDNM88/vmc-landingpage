@@ -15,7 +15,7 @@ body {
 
 /* Header styling */
 header {
-    background: url('images/header-bg.jpg') no-repeat center center/cover;
+    background: url('images/header-bg.png') no-repeat center center/cover;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
     padding: 20px 0;
     position: relative;
