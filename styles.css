@@ -22,10 +22,35 @@ header {
     z-index: 1000;
 }
 
-/* Adjust the size of header buttons */
+/* General styles for header buttons */
 .header .button {
-  padding: 8px 12px; /* Decrease padding */
-  font-size: 14px;   /* Decrease font size */
+  padding: 6px 10px; /* Decrease padding */
+  font-size: 12px;   /* Decrease font size */
+}
+
+/* Specific styles for mobile screens */
+@media (max-width: 600px) {
+  .header .button {
+    padding: 4px 6px; /* Further decrease padding */
+    font-size: 10px;  /* Further decrease font size */
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    align-items: center;
+  }
+
+  .header .button {
+    margin: 4px 0; /* Add margin for spacing between buttons */
+  }
+}
+
+/* Adjust the size of the icons in the sliders */
+.slide img {
+  width: 30px; /* Reduce width */
+  height: 30px; /* Reduce height */
+  margin-bottom: 10px; /* Adjust margin as needed */
 }
 
 header nav ul {
