@@ -42,7 +42,7 @@ header {
   }
 
   .header .button {
-    margin: 2px 0; /* Add margin for spacing between buttons */
+    margin: 4px 0; /* Add margin for spacing between buttons */
   }
 }
 
@@ -190,9 +190,8 @@ main {
 }
 
 .slider {
-  animation: slide 12s infinite;
+  animation: slide 9s infinite;
 }
-
 /* About section styling */
 .about {
     padding: 50px 0;
