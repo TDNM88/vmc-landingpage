@@ -107,7 +107,7 @@ main {
     margin: 0 auto;
 }
 
-/* Add these styles to the CSS file for the sliders */
+/* Styles for the sliders with icons */
 .marketing-services,
 .app-development {
   width: 100%;
@@ -127,6 +127,13 @@ main {
   padding: 20px;
   background-color: #f4f4f4;
   text-align: center;
+  border: 1px solid #ddd; /* Separation between slides */
+}
+
+.slide img {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  margin-bottom: 15px;
 }
 
 .slide h2 {
