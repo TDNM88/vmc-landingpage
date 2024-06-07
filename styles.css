@@ -239,6 +239,11 @@ main {
     line-height: 1.5;
 }
 
+/* Main content styling */
+main {
+    padding: 20px;
+}
+
 /* Footer styling */
 footer {
     background: #333;
