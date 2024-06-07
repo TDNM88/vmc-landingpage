@@ -24,14 +24,14 @@ header {
 
 /* General styles for header buttons */
 .header .button {
-  padding: 3px 5px; /* Decrease padding */
+  padding: 6px 10px; /* Decrease padding */
   font-size: 12px;   /* Decrease font size */
 }
 
 /* Specific styles for mobile screens */
 @media (max-width: 600px) {
   .header .button {
-    padding: 2px 3px; /* Further decrease padding */
+    padding: 4px 6px; /* Further decrease padding */
     font-size: 10px;  /* Further decrease font size */
   }
 
@@ -132,7 +132,7 @@ main {
     margin: 0 auto;
 }
 
-/* Styles for the sliders with icons */
+/* General styles for sliders */
 .marketing-services,
 .app-development {
   width: 100%;
@@ -152,14 +152,25 @@ main {
   padding: 20px;
   background-color: #f4f4f4;
   text-align: center;
-  border: 1px solid #ddd; /* Separation between slides */
+  position: relative;
+  border-top: 2px solid transparent; /* Add top border for separation */
 }
 
-/* Adjust the size of the icons in the sliders */
+.slide:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, #00f260, #0575e6);
+  transform: translateX(-50%);
+}
+
 .slide img {
   width: 30px; /* Reduce width */
   height: 30px; /* Reduce height */
-  margin-bottom: 10px; /* Adjust margin as needed */
+  margin-bottom: 10px;
 }
 
 .slide h2 {
@@ -179,7 +190,7 @@ main {
 }
 
 .slider {
-  animation: slide 9s infinite;
+  animation: slide 12s infinite;
 }
 
 /* About section styling */
