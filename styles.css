@@ -107,8 +107,9 @@ main {
     margin: 0 auto;
 }
 
-/* Add these styles to the CSS file */
-.services-slider {
+/* Add these styles to the CSS file for the sliders */
+.marketing-services,
+.app-development {
   width: 100%;
   overflow: hidden;
   position: relative;
