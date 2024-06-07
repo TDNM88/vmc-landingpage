@@ -22,6 +22,12 @@ header {
     z-index: 1000;
 }
 
+/* Adjust the size of header buttons */
+.header .button {
+  padding: 8px 12px; /* Decrease padding */
+  font-size: 14px;   /* Decrease font size */
+}
+
 header nav ul {
     display: flex;
     justify-content: flex-end;
@@ -130,10 +136,11 @@ main {
   border: 1px solid #ddd; /* Separation between slides */
 }
 
+/* Adjust the size of the icons in the sliders */
 .slide img {
-  width: 50px; /* Adjust size as needed */
-  height: 50px;
-  margin-bottom: 15px;
+  width: 30px; /* Reduce width */
+  height: 30px; /* Reduce height */
+  margin-bottom: 10px; /* Adjust margin as needed */
 }
 
 .slide h2 {
