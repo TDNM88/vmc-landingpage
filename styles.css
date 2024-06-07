@@ -192,6 +192,7 @@ main {
 
 .slider {
   animation: slide 9s infinite;
+}
 
 /* About section styling */
 .about {
