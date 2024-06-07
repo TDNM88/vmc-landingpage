@@ -189,7 +189,8 @@ main {
   66% { transform: translateX(-200%); }
   100% { transform: translateX(0); }
   }
-  .slider {
+  
+.slider {
     animation: slide 9s infinite;
   }
 
