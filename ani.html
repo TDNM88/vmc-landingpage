@@ -11,7 +11,6 @@
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script>
     // Scene setup
     const scene = new THREE.Scene();
@@ -27,33 +26,65 @@
     directionalLight.position.set(5, 10, 7.5).normalize();
     scene.add(directionalLight);
 
-    // Load giraffe model
-    const loader = new THREE.GLTFLoader();
-    let mixer;
-    loader.load('path_to_your_giraffe_model/giraffe.glb', function (gltf) {
-        const model = gltf.scene;
-        scene.add(model);
+    // Create giraffe parts
+    const bodyGeometry = new THREE.BoxGeometry(1, 2, 0.5);
+    const neckGeometry = new THREE.BoxGeometry(0.5, 1.5, 0.5);
+    const headGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+    const legGeometry = new THREE.CylinderGeometry(0.1, 0.1, 1.5);
+    const material = new THREE.MeshLambertMaterial({ color: 0xffd700 });
 
-        // Create animation mixer and play animation
-        mixer = new THREE.AnimationMixer(model);
-        gltf.animations.forEach((clip) => {
-            mixer.clipAction(clip).play();
-        });
+    // Assemble giraffe
+    const body = new THREE.Mesh(bodyGeometry, material);
+    const neck = new THREE.Mesh(neckGeometry, material);
+    const head = new THREE.Mesh(headGeometry, material);
+    const frontLeftLeg = new THREE.Mesh(legGeometry, material);
+    const frontRightLeg = new THREE.Mesh(legGeometry, material);
+    const backLeftLeg = new THREE.Mesh(legGeometry, material);
+    const backRightLeg = new THREE.Mesh(legGeometry, material);
 
-        // Position the camera
-        camera.position.z = 5;
+    // Position parts
+    neck.position.set(0, 1.75, 0);
+    head.position.set(0, 2.75, 0);
+    frontLeftLeg.position.set(-0.3, -1.25, 0.25);
+    frontRightLeg.position.set(0.3, -1.25, 0.25);
+    backLeftLeg.position.set(-0.3, -1.25, -0.25);
+    backRightLeg.position.set(0.3, -1.25, -0.25);
 
-        // Animation loop
-        const clock = new THREE.Clock();
-        function animate() {
-            requestAnimationFrame(animate);
-            const delta = clock.getDelta();
-            if (mixer) mixer.update(delta);
-            renderer.render(scene, camera);
+    // Create giraffe group
+    const giraffe = new THREE.Group();
+    giraffe.add(body);
+    giraffe.add(neck);
+    giraffe.add(head);
+    giraffe.add(frontLeftLeg);
+    giraffe.add(frontRightLeg);
+    giraffe.add(backLeftLeg);
+    giraffe.add(backRightLeg);
+
+    // Add giraffe to scene
+    scene.add(giraffe);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Animation loop
+    let direction = 1;
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate neck and head
+        neck.rotation.x += 0.01 * direction;
+        head.rotation.x += 0.01 * direction;
+
+        // Move giraffe
+        giraffe.position.x += 0.01 * direction;
+        if (giraffe.position.x > 2 || giraffe.position.x < -2) {
+            direction *= -1;
         }
 
-        animate();
-    });
+        renderer.render(scene, camera);
+    }
+
+    animate();
 
     // Adjust camera on window resize
     window.addEventListener('resize', function() {
