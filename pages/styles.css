@@ -1,0 +1,344 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background: url('images/header-bg.png') no-repeat center center/cover;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    padding: 20px 0;
+    position: relative;
+    z-index: 1000;
+}
+
+/* General styles for header buttons */
+.header .button {
+  padding: 6px 10px; /* Decrease padding */
+  font-size: 12px;   /* Decrease font size */
+}
+
+/* Specific styles for mobile screens */
+@media (max-width: 600px) {
+  .header .button {
+    padding: 4px 6px; /* Further decrease padding */
+    font-size: 10px;  /* Further decrease font size */
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    align-items: center;
+  }
+
+  .header .button {
+    margin: 4px 0; /* Add margin for spacing between buttons */
+  }
+}
+
+header nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header nav ul li {
+    margin: 0 10px;
+    position: relative;
+}
+
+header nav ul li a {
+    background: #fff;
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+header nav ul li a i {
+    font-size: 1.5em;
+}
+
+header nav ul li a span {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+header nav ul li a:hover span {
+    opacity: 1;
+    visibility: visible;
+    bottom: -40px;
+}
+
+header nav ul li a:hover {
+    background: #34495e;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Main content styling */
+main {
+    padding: 20px;
+}
+
+/* Hero section styling */
+.hero {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero .overlay {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 100px 0;
+}
+
+.hero .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* General styles for sliders */
+.marketing-services,
+.app-development {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 50px 0;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+  position: relative;
+  border-top: 2px solid transparent; /* Add top border for separation */
+}
+
+.slide:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, #00f260, #0575e6);
+  transform: translateX(-50%);
+}
+
+.slide img {
+  width: 30px; /* Reduce width */
+  height: 30px; /* Reduce height */
+  margin-bottom: 10px;
+}
+
+.slide h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.slide p {
+  font-size: 16px;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+  }
+  
+.slider {
+    animation: slide 15s infinite;
+  }
+
+/* About section styling */
+.about {
+    padding: 50px 0;
+    background: url('images/about-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.about .overlay {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px 0;
+}
+
+.about .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Team section styling */
+.team {
+    padding: 50px 0;
+    background: url('images/team-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.team .overlay {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px 0;
+}
+
+.team .container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    margin: 20px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    margin: 10px 0 5px;
+}
+
+.team-member p {
+    color: #ddd;
+}
+
+/* Apps section styling */
+.apps {
+    padding: 50px 0;
+    background: url('images/apps-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.apps .overlay {
+    position: relative;
+    background: rgba(255, 250, 255, 0.5);
+    padding: 50px 0;
+}
+
+.apps .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.apps h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.app-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.app-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.app-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.app-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+.app-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.app-item p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Main content styling */
+main {
+    padding: 20px;
+}
+
+/* Footer styling */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
