@@ -153,6 +153,7 @@ main {
   padding: 20px;
   background-color: #407fb3;
   text-align: center;
+  text-color: #FFFFFF;
   position: relative;
   border-top: 2px solid transparent; /* Add top border for separation */
 }
