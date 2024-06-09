@@ -343,14 +343,14 @@ footer p {
     margin: 0;
 }
 
-.video-gallery {
+.apps-demo-result {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-around;
 }
 
-.video-gallery video {
+.experience {
     width: 300px;
     height: 200px;
     border: 1px solid #ccc;
