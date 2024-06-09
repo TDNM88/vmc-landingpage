@@ -74,15 +74,18 @@
                     sigma_max_slider: sigmaMax
                 });
 
-                const audioElement = document.getElementById('generated-audio');
-                audioElement.src = result.data;  // Assuming the result contains the audio URL
-                audioElement.load();
-
-                statusMessage.textContent = 'Audio generation successful!';
-                statusMessage.className = 'status success';
+                if (result.status === "success" && result.data) {
+                    const audioElement = document.getElementById('generated-audio');
+                    audioElement.src = result.data;  // Assuming the result contains the audio URL
+                    audioElement.load();
+                    statusMessage.textContent = 'Audio generation successful!';
+                    statusMessage.className = 'status success';
+                } else {
+                    throw new Error('Unexpected API response');
+                }
             } catch (error) {
                 console.error('Error generating audio:', error);
-                statusMessage.textContent = 'Error generating audio. Please try again.';
+                statusMessage.textContent = `Error generating audio: ${error.message}`;
                 statusMessage.className = 'status error';
             }
         });
