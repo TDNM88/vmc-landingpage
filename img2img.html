@@ -3,47 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stable Des</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .module {
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .module h2 {
-            margin-top: 0;
-            text-align: center;
-        }
-        gradio-app {
-            width: 100%;
-            max-width: 800px;
-        }
-    </style>
+    <title>Audio Generator</title>
+    <!-- Include gradio_client library -->
+    <script src="https://cdn.jsdelivr.net/npm/gradio@2.6.2/gradio.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="module">
-            <h2>StableDes</h2>
-            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js"></script>
-            <gradio-app src="https://tdn-m-stablezip.hf.space"></gradio-app>
-        </div>
-    </div>
+    <h1>Generate Audio from Prompt</h1>
+    <form id="audio-form">
+        <label for="prompt">Prompt:</label>
+        <input type="text" id="prompt" name="prompt" required>
+        <br>
+        <label for="sampler_type">Sampler Type:</label>
+        <select id="sampler_type" name="sampler_type">
+            <option value="dpmpp-2m-sde">dpmpp-2m-sde</option>
+            <option value="dpmpp-3m-sde">dpmpp-3m-sde</option>
+            <option value="k-heun">k-heun</option>
+            <option value="k-lms">k-lms</option>
+        </select>
+        <br>
+        <label for="duration">Duration (seconds):</label>
+        <input type="number" id="duration" name="duration" min="1" max="60" value="20">
+        <br>
+        <label for="steps">Steps:</label>
+        <input type="number" id="steps" name="steps" min="1" max="200" value="80">
+        <br>
+        <label for="cfg_scale">CFG Scale:</label>
+        <input type="number" id="cfg_scale" name="cfg_scale" min="1" max="20" value="7">
+        <br>
+        <label for="sigma_min">Sigma Min:</label>
+        <input type="number" id="sigma_min" name="sigma_min" min="0.1" max="1.0" step="0.1" value="0.3">
+        <br>
+        <label for="sigma_max">Sigma Max:</label>
+        <input type="number" id="sigma_max" name="sigma_max" min="100" max="1000" step="100" value="500">
+        <br>
+        <button type="submit">Generate Audio</button>
+    </form>
+    <audio id="generated-audio" controls></audio>
+
+    <script>
+        document.getElementById('audio-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const prompt = document.getElementById('prompt').value;
+            const samplerType = document.getElementById('sampler_type').value;
+            const duration = parseFloat(document.getElementById('duration').value);
+            const steps = parseFloat(document.getElementById('steps').value);
+            const cfgScale = parseFloat(document.getElementById('cfg_scale').value);
+            const sigmaMin = parseFloat(document.getElementById('sigma_min').value);
+            const sigmaMax = parseFloat(document.getElementById('sigma_max').value);
+
+            const { Client } = gradio_client;
+            const client = await Client.connect("ameerazam08/stableaudio-open-1.0");
+
+            const result = await client.predict("/generate_audio", {
+                prompt: prompt,
+                sampler_type_dropdown: samplerType,
+                seconds_total: duration,
+                steps: steps,
+                cfg_scale: cfgScale,
+                sigma_min_slider: sigmaMin,
+                sigma_max_slider: sigmaMax
+            });
+
+            const audioElement = document.getElementById('generated-audio');
+            audioElement.src = result.data;  // Assuming the result contains the audio URL
+            audioElement.load();
+        });
+    </script>
 </body>
 </html>
