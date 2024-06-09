@@ -343,19 +343,16 @@ footer p {
     margin: 0;
 }
 
-.apps-demo-result {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-around;
+.app-demo-result {
+    position: relative;
+    background: rgba(255, 250, 255, 0.5);
+    padding: 50px 0;
 }
 
 .experience {
-    width: 300px;
-    height: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: rgba(255, 250, 255, 0.5);
+    padding: 50px 0;
 }
 
 .container {
