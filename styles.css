@@ -357,6 +357,19 @@ footer p {
     color: #fff;
 }
 
+.video-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-around;
+        }
+        .video-gallery video {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 .container {
     padding: 20px;
 }
