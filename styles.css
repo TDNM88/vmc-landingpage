@@ -350,9 +350,11 @@ footer p {
 }
 
 .experience {
-    position: relative;
-    background: rgba(255, 250, 255, 0.5);
     padding: 50px 0;
+    background: url('images/apps-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
 }
 
 .container {
