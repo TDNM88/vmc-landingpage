@@ -487,19 +487,6 @@ footer p {
 }
 
 
-/* CSS for prize section */
-.prize {
-    background-color: #f9f9f9;
-    padding: 50px 0;
-    position: relative;
-}
-
-.prize .overlay {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 50px 0;
-    position: relative;
-}
-
 .prize .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -514,48 +501,53 @@ footer p {
     color: #ffcc00;
 }
 
-.AIG, .LLM {
-    display: inline-block;
-    width: 45%;
-    margin: 20px 2.5%;
-    vertical-align: top;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.prize-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.prize .AIG img,
-.prize .LLM img {
-    width: 100px;
+.prize-info {
+    flex: 1;
+}
+
+.prize-image {
+    width: 150px;
     height: auto;
     margin-bottom: 15px;
 }
 
-.prize h3 {
+.prize-details {
+    flex: 2;
+}
+
+.prize-category {
+    margin-bottom: 20px;
+}
+
+.category-title {
     font-size: 28px;
     color: #ffcc00;
     margin-bottom: 20px;
 }
 
-.prize .stats {
-    text-align: left;
-}
-
-.prize .stats ul {
+.category-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left;
 }
 
-.prize .stats ul li {
+.category-item {
     font-size: 18px;
     margin-bottom: 10px;
     padding-left: 20px;
     position: relative;
 }
 
-.prize .stats ul li:before {
+.category-item:before {
     content: "\f058"; /* FontAwesome check icon */
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
