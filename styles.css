@@ -558,11 +558,11 @@ footer p {
     top: 0;
 }
 
-.AIG img,
-.LLM img {
-    width: 100px;
+.AIG img, .LLM img {
+    width: 150px;
     height: auto;
     margin-bottom: 15px;
+    border-radius: 50%;
 }
 
     
