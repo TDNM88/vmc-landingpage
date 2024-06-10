@@ -487,82 +487,69 @@ footer p {
 }
 
 
-.prize .container {
+.prize {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+}
+
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    color: #fff;
-    text-align: center;
 }
 
-.prize h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #ffcc00;
-}
-
-.prize-card {
+.prize-content {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
 }
 
-.prize-info {
-    flex: 1;
-}
-
-.prize-image {
-    width: 150px;
-    height: auto;
+.prize-item .icon {
+    text-align: center;
     margin-bottom: 15px;
+}
+
+.prize-item .icon i {
+    font-size: 48px;
+    color: #007BFF;
+}
+
+.prize-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.prize-item {
+    width: calc(50% - 20px);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 40px;
 }
 
 .prize-details {
-    flex: 2;
-}
-
-.prize-category {
-    margin-bottom: 20px;
-}
-
-.category-title {
-    font-size: 28px;
-    color: #ffcc00;
-    margin-bottom: 20px;
-}
-
-.category-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     text-align: left;
 }
 
-.category-item {
-    font-size: 18px;
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.category-item:before {
-    content: "\f058"; /* FontAwesome check icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 0;
-    color: #ffcc00;
-    font-size: 18px;
-    top: 0;
-}
-
-.AIG img, .LLM img {
-    width: 150px;
-    height: auto;
+.prize-details h3 {
+    font-size: 24px;
+    color: #333;
     margin-bottom: 15px;
-    border-radius: 50%;
 }
+
+.prize-details ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.prize-details ul li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
 
     
