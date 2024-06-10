@@ -488,48 +488,77 @@ footer p {
 
 
 .prize {
-    padding: 50px 0;
-    background-color: #f9f9f9;
+    background: url('path/to/your/tech-background.jpg') no-repeat center center/cover;
+    padding: 60px 0;
+    color: #ffffff;
 }
 
 .prize .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .prize-content {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .prize-item {
-    text-align: center;
-    margin-bottom: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    flex: 0 0 48%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.prize-item .icon {
-    font-size: 48px;
-    color: #007BFF;
-    margin-bottom: 15px;
+.prize-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.prize-item h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.prize-item ul {
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
-.prize-item ul li {
-    list-style: none;
-    font-size: 18px;
-    color: #666;
+.icon {
+    font-size: 40px;
+    color: #4caf50;
     margin-bottom: 10px;
+}
+
+.prize-details h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #4caf50;
+}
+
+.prize-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.prize-details ul li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.prize-details ul li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #4caf50;
+}
+
+@media (max-width: 768px) {
+    .prize-item {
+        flex: 0 0 100%;
+    }
 }
 
 
