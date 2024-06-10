@@ -487,15 +487,17 @@ footer p {
 }
 
 
-/* CSS cho section prize */
+/* CSS for prize section */
 .prize {
     background-color: #f9f9f9;
     padding: 50px 0;
+    position: relative;
 }
 
 .prize .overlay {
     background: rgba(0, 0, 0, 0.5);
     padding: 50px 0;
+    position: relative;
 }
 
 .prize .container {
