@@ -487,36 +487,82 @@ footer p {
 }
 
 
-/* Prize section styling */
-.prize {
+/* CSS cho section prize */
+section.prize {
+    background-color: #f9f9f9;
     padding: 50px 0;
-    background: url('images/prize.jpg') no-repeat center center/cover;
-    position: relative;
-    text-align: center;
-    color: #fff;
 }
 
-.prize .overlay {
-    position: relative;
+section.prize .overlay {
     background: rgba(0, 0, 0, 0.5);
     padding: 50px 0;
 }
 
-.prize .container {
-    max-width: 1000px;
+section.prize .container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
+    color: #fff;
+    text-align: center;
 }
 
-.prize h2 {
-    font-size: 2.5em;
+section.prize h2 {
+    font-size: 36px;
     margin-bottom: 30px;
-    color: #333;
+    color: #ffcc00;
 }
 
-.prize h3 h4 {
-    font-size: 1.5em;
+section.prize .AIG,
+section.prize .LLM {
+    display: inline-block;
+    width: 45%;
+    margin: 20px 2.5%;
+    vertical-align: top;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+section.prize .AIG img,
+section.prize .LLM img {
+    width: 100px;
+    height: auto;
     margin-bottom: 15px;
-    color: #007BFF;
+}
+
+section.prize h3 {
+    font-size: 28px;
+    color: #ffcc00;
+    margin-bottom: 20px;
+}
+
+section.prize .stats {
+    text-align: left;
+}
+
+section.prize .stats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+section.prize .stats ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+section.prize .stats ul li:before {
+    content: "\f058"; /* FontAwesome check icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #ffcc00;
+    font-size: 18px;
+    top: 0;
 }
 
     
