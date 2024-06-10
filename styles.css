@@ -485,3 +485,38 @@ footer p {
         box-shadow: 0 0 10px rgba(0, 123, 255, 0.2), 0 0 20px rgba(0, 123, 255, 0.2), 0 0 40px rgba(0, 123, 255, 0.2);
     }
 }
+
+
+/* Prize section styling */
+.prize {
+    padding: 50px 0;
+    background: url('images/prize.jpg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.prize .overlay {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px 0;
+}
+
+.prize .container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.prize h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.prize h3 h4 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+    
