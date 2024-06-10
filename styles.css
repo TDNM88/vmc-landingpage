@@ -327,6 +327,43 @@ main {
     line-height: 1.5;
 }
 
+/* Styles for nav within app-item to have floating button effect */
+.app-item nav ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+.app-item nav ul li {
+    margin: 10px 0;
+}
+
+.app-item nav ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.app-item nav ul li a i {
+    margin-right: 10px;
+}
+
+.app-item nav ul li a:hover {
+    background: #0056b3;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
 /* Main content styling */
 main {
     padding: 20px;
