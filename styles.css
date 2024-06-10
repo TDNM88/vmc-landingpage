@@ -488,64 +488,46 @@ footer p {
 
 
 .prize {
-    background-color: #f9f9f9;
     padding: 50px 0;
+    background-color: #f9f9f9;
 }
 
-.container {
+.prize .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .prize-content {
     display: flex;
-    justify-content: space-between;
-}
-
-.prize-item .icon {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.prize-item .icon i {
-    font-size: 48px;
-    color: #007BFF;
-}
-
-.prize-item img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 15px;
+    justify-content: space-around;
 }
 
 .prize-item {
-    width: calc(50% - 20px);
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    text-align: center;
     margin-bottom: 40px;
 }
 
-.prize-details {
-    text-align: left;
+.prize-item .icon {
+    font-size: 48px;
+    color: #007BFF;
+    margin-bottom: 15px;
 }
 
-.prize-details h3 {
+.prize-item h3 {
     font-size: 24px;
     color: #333;
     margin-bottom: 15px;
 }
 
-.prize-details ul {
-    list-style-type: disc;
-    margin-left: 20px;
+.prize-item ul {
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
-.prize-details ul li {
-    font-size: 16px;
-    line-height: 1.6;
+.prize-item ul li {
+    list-style: none;
+    font-size: 18px;
     color: #666;
     margin-bottom: 10px;
 }
