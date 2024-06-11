@@ -224,12 +224,10 @@ main {
     margin-bottom: 20px;
 }
 
-/* Prize section styling */
 .prize {
     background: url('images/lln.jpg') no-repeat center center/cover;
     padding: 60px 0;
     color: #ffffff;
-    text-align: center;
 }
 
 .prize .container {
@@ -242,6 +240,7 @@ main {
     font-size: 36px;
     margin-bottom: 40px;
     color: #4caf50;
+    text-align: center;
 }
 
 .prize-content {
@@ -250,12 +249,16 @@ main {
     justify-content: space-between;
 }
 
+.prize-column {
+    flex: 0 0 48%;
+    box-sizing: border-box;
+}
+
 .prize-item {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
-    flex: 0 0 48%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -301,7 +304,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    .prize-item {
+    .prize-column {
         flex: 0 0 100%;
     }
 }
