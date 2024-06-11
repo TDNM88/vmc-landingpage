@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Upload Image to Remove Background</h1>
+    <form id="uploadForm">
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData();
+            const fileInput = document.getElementById('image');
+            formData.append('file', fileInput.files[0]);
+
+            const uploadResponse = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const uploadData = await uploadResponse.json();
+            const jobId = uploadData.jobId;
+
+            // Polling job status
+            let jobStatus = 'CREATED';
+            while (jobStatus !== 'FINISHED' && jobStatus !== 'FAILED') {
+                const statusResponse = await fetch(`/api/status/${jobId}`);
+                const statusData = await statusResponse.json();
+                jobStatus = statusData.job.status;
+
+                if (jobStatus === 'FAILED') {
+                    document.getElementById('result').innerText = 'Job failed. Please try again.';
+                    return;
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 3000));  // Wait for 3 seconds before checking again
+            }
+
+            // Display processed image
+            const processedImageUrl = statusData.job.successInfo.images[0].url;
+            document.getElementById('result').innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
+        });
+    </script>
+</body>
+</html>
