@@ -44,6 +44,11 @@
                     method: 'POST',
                     body: formData
                 });
+
+                if (!uploadResponse.ok) {
+                    throw new Error(`HTTP error! status: ${uploadResponse.status}`);
+                }
+
                 const uploadData = await uploadResponse.json();
                 const jobId = uploadData.jobId;
 
@@ -70,6 +75,7 @@
                 resultDiv.innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
             } catch (error) {
                 statusDiv.textContent = 'An error occurred. Please try again.';
+                console.error('Error:', error);
             }
         });
     </script>
