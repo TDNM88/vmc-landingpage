@@ -3,6 +3,28 @@ const APP_ID = '__k9sUFM';
 const TEMPLATE_ID = '713433921135725669';
 const ENDPOINT = 'https://ap-east-1.tensorart.cloud';
 
+async function getSignature() {
+    const response = await fetch(`${ENDPOINT}/v1/signature`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            app_id: APP_ID,
+            template_id: TEMPLATE_ID
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText);
+    }
+
+    const result = await response.json();
+    return result.data.signature;
+}
+
 document.getElementById('uploadButton').addEventListener('click', async () => {
     const fileInput = document.getElementById('imageUpload');
     const file = fileInput.files[0];
@@ -18,12 +40,15 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         return;
     }
 
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('app_id', APP_ID);
-    formData.append('template_id', TEMPLATE_ID);
-
     try {
+        const signature = await getSignature();
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('app_id', APP_ID);
+        formData.append('template_id', TEMPLATE_ID);
+        formData.append('signature', signature);
+
         const response = await fetch(`${ENDPOINT}/v1/process`, {
             method: 'POST',
             headers: {
