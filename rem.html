@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Background</title>
+    <title>Xóa Nền Ảnh</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -25,11 +25,11 @@
         <section class="hero">
             <div class="overlay">
                 <div class="container">
-                    <h1>Upload Image and Remove Background</h1>
+                    <h1>Tải Lên Ảnh và Xóa Nền</h1>
                     <input type="file" id="imageUpload" accept="image/*">
-                    <button id="uploadButton">Upload and Process</button>
+                    <button id="uploadButton" class="btn"><i class="fas fa-upload"></i> Tải Lên và Xử Lý</button>
                     <div id="result">
-                        <h2>Processed Image:</h2>
+                        <h2>Ảnh Đã Xử Lý:</h2>
                         <img id="processedImage" src="" alt="Processed Image">
                     </div>
                     <div id="error" class="error-message"></div>
@@ -40,7 +40,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 TDN-M. All rights reserved. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
+            <p>&copy; 2024 TDN-M. Bản quyền thuộc về TDN-M. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
         </div>
     </footer>
 
@@ -58,7 +58,7 @@
             processedImage.style.display = 'none';
 
             if (!file) {
-                errorDiv.textContent = 'Please select an image to upload.';
+                errorDiv.textContent = 'Vui lòng chọn một ảnh để tải lên.';
                 return;
             }
 
@@ -70,11 +70,11 @@
                     processedImage.src = result.data;
                     processedImage.style.display = 'block';
                 } else {
-                    throw new Error('No data received from API.');
+                    throw new Error('Không nhận được dữ liệu từ API.');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                errorDiv.textContent = 'An error occurred while processing the image: ' + error.message;
+                console.error('Lỗi:', error);
+                errorDiv.textContent = 'Đã xảy ra lỗi khi xử lý ảnh: ' + error.message;
             }
         });
     </script>
