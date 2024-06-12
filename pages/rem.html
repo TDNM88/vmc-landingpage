@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xóa Nền Ảnh | TDN-M</title>
+    <title>Remove Background</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.23/jsrsasign-all-min.js"></script>
 </head>
+
 <body>
     <header>
         <nav>
@@ -18,13 +19,26 @@
                 <li><a href="aig.html"><i class="fas fa-robot"></i><span>AIGC</span></a></li>
             </ul>
         </nav>
-    </header>
-<body>
-    <div class="tensor-art-container">
-        <iframe src="https://tensor.art/template/run/713433921135725669?source_id=637285499601470901" title="Tensor.art Component"></iframe>
-    </div>
- <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
-      <script>
+</header>
+
+    <main>
+        <section class="hero">
+            <div class="overlay">
+                <div class="container">
+                    <h1>Upload Image and Remove Background</h1>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.36.1/gradio.js"></script>
+    <gradio-app src="https://tdn-m-xoanenanh.hf.space"></gradio-app>
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+                </div>
+            </div>
+        </section>
+<footer>
+        <div class="container">
+            <p>&copy; 2024 TDN-M. All rights reserved. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
+        </div>
+</footer>
+        
+<script>
           new CozeWebSDK.WebChatClient({
             config: {
               bot_id: '7334554882378104833',
@@ -35,12 +49,6 @@
               layout: 'mobile',
             },
           });
-      </script>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 TDN-M. All rights reserved. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
-        </div>
-    </footer>
+</script>
 </body>
 </html>
