@@ -19,104 +19,15 @@
             </ul>
         </nav>
     </header>
-    <h1>Upload Image to Remove Background</h1>
-    <form id="uploadForm">
-        <input type="file" id="image" name="image" accept="image/*" required>
-        <button type="submit">Upload</button>
-    </form>
-    <div id="status" class="status"></div>
-    <div id="result"></div>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const statusDiv = document.getElementById('status');
-            const resultDiv = document.getElementById('result');
-            statusDiv.textContent = 'Uploading...';
-            resultDiv.innerHTML = '';
-
-            const formData = new FormData();
-            const fileInput = document.getElementById('image');
-            formData.append('file', fileInput.files[0]);
-
-            try {
-                // Step 1: Upload Image
-                const uploadResponse = await fetch('https://ap-east-1.tensorart.cloud/v1/media/upload', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer 718e5a8e6c7d45cf821cfa2fbbf5e21b`
-                    },
-                    body: formData
-                });
-
-                if (!uploadResponse.ok) {
-                    throw new Error(`HTTP error! status: ${uploadResponse.status}`);
-                }
-
-                const uploadData = await uploadResponse.json();
-                const mediaResourceId = uploadData.id;
-
-                // Step 2: Create Workflow Job
-                const requestId = crypto.randomUUID();
-                const workflowResponse = await fetch('https://ap-east-1.tensorart.cloud/v1/jobs/workflow/template', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer 718e5a8e6c7d45cf821cfa2fbbf5e21b`
-                    },
-                    body: JSON.stringify({
-                        request_id: requestId,
-                        templateId: '713433921135725669',
-                        fields: {
-                            fieldAttrs: [
-                                {
-                                    nodeId: '25',
-                                    fieldName: 'image',
-                                    fieldValue: mediaResourceId
-                                }
-                            ]
-                        }
-                    })
-                });
-
-                if (!workflowResponse.ok) {
-                    throw new Error(`HTTP error! status: ${workflowResponse.status}`);
-                }
-
-                const workflowData = await workflowResponse.json();
-                const jobId = workflowData.job.id;
-
-                statusDiv.textContent = 'Processing...';
-
-                // Polling job status
-                let jobStatus = 'CREATED';
-                while (jobStatus !== 'FINISHED' && jobStatus !== 'FAILED') {
-                    const statusResponse = await fetch(`https://ap-east-1.tensorart.cloud/v1/jobs/${jobId}`, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer 718e5a8e6c7d45cf821cfa2fbbf5e21b`
-                        }
-                    });
-                    const statusData = await statusResponse.json();
-                    jobStatus = statusData.job.status;
-
-                    if (jobStatus === 'FAILED') {
-                        statusDiv.textContent = 'Job failed. Please try again.';
-                        return;
-                    }
-
-                    await new Promise(resolve => setTimeout(resolve, 3000));  // Wait for 3 seconds before checking again
-                }
-
-                // Display processed image
-                const processedImageUrl = statusData.job.successInfo.images[0].url;
-                statusDiv.textContent = 'Processing finished!';
-                resultDiv.innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
-            } catch (error) {
-                statusDiv.textContent = 'An error occurred. Please try again.';
-                console.error('Error:', error);
-            }
-        });
-    </script>
+    <div class="container">
+        <h1>Upload Image to Remove Background</h1>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button id="uploadButton">Upload and Process</button>
+        <div id="result">
+            <h2>Processed Image:</h2>
+            <img id="processedImage" src="" alt="Processed Image">
+        </div>
+    </div>
+    <script src="script-rem.js"></script>
 </body>
 </html>
