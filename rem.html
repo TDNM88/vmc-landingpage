@@ -42,6 +42,22 @@
             height: auto;
             display: none;
         }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .upload-container input {
+            margin-bottom: 10px;
+        }
+
+        .upload-container video {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -63,8 +79,13 @@
             <div class="overlay">
                 <div class="container">
                     <h1>Tải Ảnh Lên và Xóa Nền</h1>
-                    <input type="file" id="imageUpload" accept="image/*">
-                    <button id="uploadButton" class="btn">Tải lên và Xử lý</button>
+                    <div class="upload-container">
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <button id="cameraButton" class="btn"><i class="fas fa-camera"></i> Sử dụng Camera</button>
+                        <video id="video" autoplay></video>
+                        <button id="captureButton" class="btn" style="display: none;"><i class="fas fa-camera"></i> Chụp Ảnh</button>
+                        <button id="uploadButton" class="btn"><i class="fas fa-upload"></i> Tải lên và Xử lý</button>
+                    </div>
                     <div id="result">
                         <h2>Ảnh đã xử lý:</h2>
                         <img id="processedImage" src="" alt="Processed Image">
@@ -84,11 +105,46 @@
     <script type="module">
         import { Client } from "@gradio/client";
 
-        document.getElementById('uploadButton').addEventListener('click', async () => {
-            const fileInput = document.getElementById('imageUpload');
+        const fileInput = document.getElementById('imageUpload');
+        const cameraButton = document.getElementById('cameraButton');
+        const video = document.getElementById('video');
+        const captureButton = document.getElementById('captureButton');
+        const uploadButton = document.getElementById('uploadButton');
+        const errorDiv = document.getElementById('error');
+        const processedImage = document.getElementById('processedImage');
+
+        cameraButton.addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.style.display = 'block';
+                    captureButton.style.display = 'block';
+                    cameraButton.style.display = 'none';
+                })
+                .catch(err => {
+                    console.error('Error accessing camera: ', err);
+                    errorDiv.textContent = 'Không thể truy cập camera.';
+                });
+        });
+
+        captureButton.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => {
+                fileInput.files = new FileListItems([new File([blob], 'capture.png', { type: 'image/png' })]);
+                video.style.display = 'none';
+                captureButton.style.display = 'none';
+                cameraButton.style.display = 'block';
+                const stream = video.srcObject;
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+            });
+        });
+
+        uploadButton.addEventListener('click', async () => {
             const file = fileInput.files[0];
-            const errorDiv = document.getElementById('error');
-            const processedImage = document.getElementById('processedImage');
 
             // Reset error message and processed image
             errorDiv.textContent = '';
@@ -114,6 +170,13 @@
                 errorDiv.textContent = 'Đã xảy ra lỗi trong quá trình xử lý ảnh: ' + error.message;
             }
         });
+
+        // Helper function to create a FileList
+        function FileListItems(files) {
+            const b = new ClipboardEvent("").clipboardData || new DataTransfer();
+            for (let i = 0, len = files.length; i < len; i++) b.items.add(files[i]);
+            return b.files;
+        }
     </script>
 </body>
 </html>
