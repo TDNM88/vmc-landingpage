@@ -2,27 +2,18 @@ const API_KEY = '718e5a8e6c7d45cf821cfa2fbbf5e21b';
 const APP_ID = '__k9sUFM';
 const TEMPLATE_ID = '713433921135725669';
 const ENDPOINT = 'https://ap-east-1.tensorart.cloud';
+const PRIVATE_KEY = `-----BEGIN PRIVATE KEY-----
+YOUR_PRIVATE_KEY_HERE
+-----END PRIVATE KEY-----`;
 
-async function getSignature() {
-    const response = await fetch(`${ENDPOINT}/v1/signature`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${API_KEY}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            app_id: APP_ID,
-            template_id: TEMPLATE_ID
-        })
-    });
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText);
-    }
-
-    const result = await response.json();
-    return result.data.signature;
+async function generateSignature(method, url, appId, body) {
+    const timestamp = Math.floor(Date.now() / 1000);
+    const message = `${method}${url}${timestamp}${appId}${body ? JSON.stringify(body) : ''}`;
+    const sign = crypto.createSign('RSA-SHA256');
+    sign.update(message);
+    sign.end();
+    const signature = sign.sign(PRIVATE_KEY, 'base64');
+    return `TAMS-HMAC-SHA256 ${timestamp}:${signature}`;
 }
 
 document.getElementById('uploadButton').addEventListener('click', async () => {
@@ -41,7 +32,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
     }
 
     try {
-        const signature = await getSignature();
+        const signature = await generateSignature('POST', '/v1/resource/image', APP_ID, { expireSec: 3600 });
 
         const formData = new FormData();
         formData.append('file', file);
@@ -49,7 +40,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         formData.append('template_id', TEMPLATE_ID);
         formData.append('signature', signature);
 
-        const response = await fetch(`${ENDPOINT}/v1/process`, {
+        const response = await fetch(`${ENDPOINT}/v1/resource/image`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${API_KEY}`
