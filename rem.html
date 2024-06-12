@@ -1,11 +1,48 @@
-<!DOCTYPE html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xóa Nền Ảnh</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta.3/css/all.min.css">
+    <style>
+        /* CSS cho nút */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        #processedImage {
+            max-width: 100%;
+            height: auto;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,11 +62,11 @@
         <section class="hero">
             <div class="overlay">
                 <div class="container">
-                    <h1>Tải Lên Ảnh và Xóa Nền</h1>
+                    <h1>Tải Ảnh Lên và Xóa Nền</h1>
                     <input type="file" id="imageUpload" accept="image/*">
-                    <button id="uploadButton" class="btn"><i class="fas fa-upload"></i> Tải Lên và Xử Lý</button>
+                    <button id="uploadButton" class="btn">Tải lên và Xử lý</button>
                     <div id="result">
-                        <h2>Ảnh Đã Xử Lý:</h2>
+                        <h2>Ảnh đã xử lý:</h2>
                         <img id="processedImage" src="" alt="Processed Image">
                     </div>
                     <div id="error" class="error-message"></div>
@@ -73,8 +110,8 @@
                     throw new Error('Không nhận được dữ liệu từ API.');
                 }
             } catch (error) {
-                console.error('Lỗi:', error);
-                errorDiv.textContent = 'Đã xảy ra lỗi khi xử lý ảnh: ' + error.message;
+                console.error('Error:', error);
+                errorDiv.textContent = 'Đã xảy ra lỗi trong quá trình xử lý ảnh: ' + error.message;
             }
         });
     </script>
