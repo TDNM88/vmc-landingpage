@@ -6,9 +6,15 @@ const ENDPOINT = 'https://ap-east-1.tensorart.cloud';
 document.getElementById('uploadButton').addEventListener('click', async () => {
     const fileInput = document.getElementById('imageUpload');
     const file = fileInput.files[0];
+    const errorDiv = document.getElementById('error');
+    const processedImage = document.getElementById('processedImage');
+
+    // Reset error message and processed image
+    errorDiv.textContent = '';
+    processedImage.style.display = 'none';
 
     if (!file) {
-        alert('Please select an image to upload.');
+        errorDiv.textContent = 'Please select an image to upload.';
         return;
     }
 
@@ -33,11 +39,10 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         const result = await response.json();
         const processedImageUrl = result.data.output_url;
 
-        const processedImage = document.getElementById('processedImage');
         processedImage.src = processedImageUrl;
         processedImage.style.display = 'block';
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred while processing the image.');
+        errorDiv.textContent = 'An error occurred while processing the image.';
     }
 });
