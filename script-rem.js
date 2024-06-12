@@ -33,7 +33,8 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to process image.');
+            const errorText = await response.text();
+            throw new Error(errorText);
         }
 
         const result = await response.json();
@@ -43,6 +44,6 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
         processedImage.style.display = 'block';
     } catch (error) {
         console.error('Error:', error);
-        errorDiv.textContent = 'An error occurred while processing the image.';
+        errorDiv.textContent = 'An error occurred while processing the image: ' + error.message;
     }
 });
