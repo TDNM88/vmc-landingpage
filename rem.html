@@ -8,16 +8,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.23/jsrsasign-all-min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Upload Image to Remove Background</h1>
-        <input type="file" id="imageUpload" accept="image/*">
-        <button id="uploadButton">Upload and Process</button>
-        <div id="result">
-            <h2>Processed Image:</h2>
-            <img id="processedImage" src="" alt="Processed Image">
-        </div>
-        <div id="error" class="error-message"></div>
-    </div>
-    <script src="script-rem.js"></script>
+    <h1>Upload Image and Remove Background</h1>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.36.1/gradio.js"></script>
+    <gradio-app src="https://tdn-m-xoanenanh.hf.space"></gradio-app>
+<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+      <script>
+          new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7334554882378104833',
+            },
+            componentProps: {
+              title: 'TDNM CUSTOMER SERVICES',
+              icon: '/images/apps/247.png',
+              layout: 'mobile',
+            },
+          });
+      </script>
 </body>
+<footer>
+        <div class="container">
+            <p>&copy; 2024 TDN-M. All rights reserved. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
+        </div>
+</footer>
 </html>
