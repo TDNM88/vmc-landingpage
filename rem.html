@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>Upload Image to Remove Background</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result img {
+            max-width: 100%;
+        }
+        .status {
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>Upload Image to Remove Background</h1>
@@ -11,39 +24,53 @@
         <input type="file" id="image" name="image" accept="image/*" required>
         <button type="submit">Upload</button>
     </form>
+    <div id="status" class="status"></div>
     <div id="result"></div>
+
     <script>
         document.getElementById('uploadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            const statusDiv = document.getElementById('status');
+            const resultDiv = document.getElementById('result');
+            statusDiv.textContent = 'Uploading...';
+            resultDiv.innerHTML = '';
+
             const formData = new FormData();
             const fileInput = document.getElementById('image');
             formData.append('file', fileInput.files[0]);
 
-            const uploadResponse = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData
-            });
-            const uploadData = await uploadResponse.json();
-            const jobId = uploadData.jobId;
+            try {
+                const uploadResponse = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const uploadData = await uploadResponse.json();
+                const jobId = uploadData.jobId;
 
-            // Polling job status
-            let jobStatus = 'CREATED';
-            while (jobStatus !== 'FINISHED' && jobStatus !== 'FAILED') {
-                const statusResponse = await fetch(`/api/status/${jobId}`);
-                const statusData = await statusResponse.json();
-                jobStatus = statusData.job.status;
+                statusDiv.textContent = 'Processing...';
 
-                if (jobStatus === 'FAILED') {
-                    document.getElementById('result').innerText = 'Job failed. Please try again.';
-                    return;
+                // Polling job status
+                let jobStatus = 'CREATED';
+                while (jobStatus !== 'FINISHED' && jobStatus !== 'FAILED') {
+                    const statusResponse = await fetch(`/api/status/${jobId}`);
+                    const statusData = await statusResponse.json();
+                    jobStatus = statusData.job.status;
+
+                    if (jobStatus === 'FAILED') {
+                        statusDiv.textContent = 'Job failed. Please try again.';
+                        return;
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 3000));  // Wait for 3 seconds before checking again
                 }
 
-                await new Promise(resolve => setTimeout(resolve, 3000));  // Wait for 3 seconds before checking again
+                // Display processed image
+                const processedImageUrl = statusData.job.successInfo.images[0].url;
+                statusDiv.textContent = 'Processing finished!';
+                resultDiv.innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
+            } catch (error) {
+                statusDiv.textContent = 'An error occurred. Please try again.';
             }
-
-            // Display processed image
-            const processedImageUrl = statusData.job.successInfo.images[0].url;
-            document.getElementById('result').innerHTML = `<img src="${processedImageUrl}" alt="Processed Image">`;
         });
     </script>
 </body>
