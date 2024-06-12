@@ -25,3 +25,8 @@ body {
     height: auto;
     display: none;
 }
+
+.error-message {
+    color: red;
+    margin-top: 20px;
+}
