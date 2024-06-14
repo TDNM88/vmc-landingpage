@@ -21,20 +21,20 @@
             </ul>
         </nav>
     </header>
-     <section class="hero">
-            <div class="overlay">
-               <div id="container" style="width: 600px; height: 400px;">
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <section class="hero">
+        <div class="overlay">
+            <div id="panorama" style="width: 100%; height: 80vh;"></div>
+        </div>
+    </section>
+    <!-- Liên kết tới tệp JS của Pannellum -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
     <script>
         // Sử dụng pannellum để khởi tạo và hiển thị ảnh 360 độ
         pannellum.viewer('panorama', {
             "type": "equirectangular",
-            "panorama": "1.jpg", // Đường dẫn tới ảnh 360 độ
+            "panorama": "images/1.jpg", // Đường dẫn tới ảnh 360 độ
             "autoLoad": true
         });
     </script>
-               </div>
-            </div>
-    </section>
 </body>
 </html>
