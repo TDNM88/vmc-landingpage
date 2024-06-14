@@ -23,11 +23,30 @@
             </ul>
         </nav>
     </header>
+    
     <section class="hero">
         <div class="overlay">
+            <!-- Khu vực trình chiếu ảnh 360 độ với Pannellum -->
             <div id="panorama" style="width: 100%; height: 80vh;"></div>
         </div>
     </section>
+    
+    <section class="aframe">
+        <div class="overlay">
+            <!-- Khu vực trình chiếu ảnh 360 độ với A-Frame -->
+            <a-scene embedded style="width: 100%; height: 80vh;">
+                <a-sky id="image-360" radius="10" src="images/2.jpg"></a-sky>
+                <a-camera>
+                    <a-cursor></a-cursor>
+                </a-camera>
+                <a-entity id="menu" geometry="primitive: plane; height: auto; width: 1" material="color: white" position="0 1.6 -3">
+                    <a-entity position="0 0.2 0" text="value: Xem ảnh 2; color: black" event-set__click="_event: click; _target: #image-360; src: images/2.jpg"></a-entity>
+                    <a-entity position="0 -0.2 0" text="value: Xem ảnh 3; color: black" event-set__click="_event: click; _target: #image-360; src: images/3.jpg"></a-entity>
+                </a-entity>
+            </a-scene>
+        </div>
+    </section>
+    
     <!-- Liên kết tới tệp JS của Pannellum -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
     <script>
@@ -38,18 +57,5 @@
             "autoLoad": true
         });
     </script>
-    <!-- A-Frame Section -->
-    <section class="aframe">
-        <a-scene>
-            <a-sky id="image-360" radius="10" src="images/2.jpg"></a-sky>
-            <a-camera>
-                <a-cursor></a-cursor>
-            </a-camera>
-            <a-entity id="menu" geometry="primitive: plane; height: auto; width: 1" material="color: white" position="0 1.6 -3">
-                <a-entity position="0 0.2 0" text="value: Xem ảnh 2; color: black" event-set__click="_event: click; _target: #image-360; src: images/2.jpg"></a-entity>
-                <a-entity position="0 -0.2 0" text="value: Xem ảnh 3; color: black" event-set__click="_event: click; _target: #image-360; src: images/3.jpg"></a-entity>
-            </a-entity>
-        </a-scene>
-    </section>
 </body>
 </html>
