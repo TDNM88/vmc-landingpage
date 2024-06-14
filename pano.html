@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trình chiếu ảnh 360 độ</title>
+    <!-- Liên kết tới tệp CSS của Pannellum -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
+</head>
+<body>
+    <!-- Tạo một khung để chứa ảnh 360 độ -->
+    <div id="panorama" style="width: 600px; height: 400px;"></div>
+
+    <!-- Liên kết tới tệp JS của Pannellum -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <script>
+        // Sử dụng pannellum để khởi tạo và hiển thị ảnh 360 độ
+        pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "panorama": "1.jpg", // Đường dẫn tới ảnh 360 độ
+            "autoLoad": true
+        });
+    </script>
+</body>
+</html>
