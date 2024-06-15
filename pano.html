@@ -1,40 +1,95 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trình chiếu ảnh 360 độ</title>
-    <!-- Liên kết tới tệp CSS của Pannellum -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>360 Camera Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #viewer {
+            width: 100%;
+            height: 50vh;
+            background: #000;
+        }
+        #steps {
+            padding: 20px;
+        }
+        .step {
+            margin: 10px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: red;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/index.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
-                <li><a href="vmc.html"><i class="fas fa-project-diagram"></i><span>Dự án VMC</span></a></li>
-                <li><a href="mkt.html"><i class="fas fa-bullhorn"></i><span>Dịch vụ Marketing</span></a></li>
-                <li><a href="projects.html"><i class="fas fa-th-large"></i><span>Các ứng dụng</span></a></li>
-                <li><a href="aig.html"><i class="fas fa-robot"></i><span>AIGC</span></a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="hero">
-        <div class="overlay">
-            <div id="panorama" style="width: 100%; height: 80vh;"></div>
-        </div>
-    </section>
-    <!-- Liên kết tới tệp JS của Pannellum -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <div id="viewer"></div>
+    <div id="steps">
+        <div id="step1" class="step">1. Thiết bị: <span class="highlight">Máy ảnh với ống kính góc rộng, chân máy, đầu xoay toàn cảnh</span>.</div>
+        <div id="step2" class="step">2. Lắp đặt: <span class="highlight">Gắn máy ảnh lên chân máy với đầu xoay toàn cảnh</span>.</div>
+        <div id="step3" class="step">3. Cài đặt: <span class="highlight">Đặt máy ảnh ở chế độ thủ công, điều chỉnh khẩu độ, tốc độ màn trập, và ISO</span>.</div>
+        <div id="step4" class="step">4. Chụp ảnh: <span class="highlight">Xoay máy ảnh theo chiều ngang và dọc để chụp nhiều ảnh chồng chéo</span>.</div>
+        <div id="step5" class="step">5. Ghép ảnh: <span class="highlight">Sử dụng phần mềm để ghép ảnh thành một hình ảnh equirectangular</span>.</div>
+    </div>
+    <button class="button" id="nextStep">Next Step</button>
+
     <script>
-        // Sử dụng pannellum để khởi tạo và hiển thị ảnh 360 độ
-        pannellum.viewer('panorama', {
-            "type": "equirectangular",
-            "panorama": "images/1.jpg", // Đường dẫn tới ảnh 360 độ
-            "autoLoad": true
+        const steps = [
+            "Thiết bị: Máy ảnh với ống kính góc rộng, chân máy, đầu xoay toàn cảnh.",
+            "Lắp đặt: Gắn máy ảnh lên chân máy với đầu xoay toàn cảnh.",
+            "Cài đặt: Đặt máy ảnh ở chế độ thủ công, điều chỉnh khẩu độ, tốc độ màn trập, và ISO.",
+            "Chụp ảnh: Xoay máy ảnh theo chiều ngang và dọc để chụp nhiều ảnh chồng chéo.",
+            "Ghép ảnh: Sử dụng phần mềm để ghép ảnh thành một hình ảnh equirectangular."
+        ];
+
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            const stepElements = document.querySelectorAll('.step');
+            stepElements.forEach((el, index) => {
+                el.style.display = index === stepIndex ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('nextStep').addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
         });
+
+        showStep(currentStep);
+
+        function startCamera() {
+            const constraints = { video: { facingMode: "environment" } };
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then((stream) => {
+                    const video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.play();
+                    document.getElementById('viewer').appendChild(video);
+                })
+                .catch((err) => {
+                    console.error("Error accessing the camera: " + err);
+                });
+        }
+
+        startCamera();
     </script>
 </body>
 </html>
