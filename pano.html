@@ -80,6 +80,9 @@
             navigator.mediaDevices.getUserMedia(constraints)
                 .then((stream) => {
                     const video = document.createElement('video');
+                    video.autoplay = true;
+                    video.playsinline = true; // Required for iOS Safari
+                    video.muted = true;
                     video.srcObject = stream;
                     video.play();
                     document.getElementById('viewer').appendChild(video);
