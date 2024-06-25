@@ -3,149 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link test App</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Architecture Gallery</title>
     <style>
-    
-        /* Header styling */
-header {
-    background: url('images/header-bg.png') no-repeat center center/cover;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-    padding: 20px 0;
-    position: relative;
-    z-index: 1000;
-}
-
-/* General styles for header buttons */
-.header .button {
-  padding: 6px 10px; /* Decrease padding */
-  font-size: 12px;   /* Decrease font size */
-}
-
-/* Specific styles for mobile screens */
-@media (max-width: 600px) {
-  .header .button {
-    padding: 4px 6px; /* Further decrease padding */
-    font-size: 10px;  /* Further decrease font size */
-  }
-
-  .header {
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically on mobile */
-    align-items: center;
-  }
-
-  .header .button {
-    margin: 4px 0; /* Add margin for spacing between buttons */
-  }
-}
-
-header nav ul {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-header nav ul li {
-    margin: 0 10px;
-    position: relative;
-}
-
-header nav ul li a {
-    background: #fff;
-    color: #2c3e50;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    position: relative;
-}
-
-header nav ul li a i {
-    font-size: 1.5em;
-}
-
-header nav ul li a span {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c3e50;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-header nav ul li a:hover span {
-    opacity: 1;
-    visibility: visible;
-    bottom: -40px;
-}
-
-header nav ul li a:hover {
-    background: #34495e;
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Footer styling */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-footer p {
-    margin: 0;
-}
-
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/index.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
-                <li><a href="vmc.html"><i class="fas fa-project-diagram"></i><span>Dự án VMC</span></a></li>
-                <li><a href="mkt.html"><i class="fas fa-bullhorn"></i><span>Dịch vụ Marketing</span></a></li>
-                <li><a href="projects.html"><i class="fas fa-th-large"></i><span>Các ứng dụng</span></a></li>
-                <li><a href="aig.html"><i class="fas fa-robot"></i><span>AIGC</span></a></li>
-            </ul> 
-        </nav>
-</header>
-
-<footer>
-        <div class="container">
-            <p>&copy; 2024 TDN-M. All rights reserved. Website đang trong quá trình xây dựng, nếu có thắc mắc cần giải đáp, vui lòng kết nối với chúng tôi qua Super Care 247 bằng cách nhấn nút bên phải màn hình</p>
-        </div>
-</footer>
-        
-<script>
-          new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7334554882378104833',
-            },
-            componentProps: {
-              title: 'TDNM CUSTOMER SERVICES',
-              icon: '/images/apps/247.png',
-              layout: 'mobile',
-            },
-          });
-</script>
+    <h1 style="text-align: center; padding: 20px;">Architecture Gallery</h1>
+    <div class="gallery">
+        <img src="https://drive.google.com/uc?id=1GxWpy9Z3gC6SP0UMlIDzPAAaVhZ2UNdm" alt="Architecture Image 1">
+        <img src="https://drive.google.com/uc?id=1VhIYQPV-V8nx9pEJQMSQ4lv46Z6f-6xZ" alt="Architecture Image 2">
+        <img src="https://drive.google.com/uc?id=1M_Sb5icSk5xFm_AZ6A2FDubQ0LrvXs3n" alt="Architecture Image 3">
+        <img src="https://drive.google.com/uc?id=1bH8nLZaM-L11c0E1xPH5_L7FUyD9i7LK" alt="Architecture Image 4">
+        <img src="https://drive.google.com/uc?id=1X38e7gEv-_6MYm2l7ZhRBbgKs1FezQfR" alt="Architecture Image 5">
+        <img src="https://drive.google.com/uc?id=1N6-4WfpRe8a6a5YaZMKZW8ZbPtn-57EK" alt="Architecture Image 6">
+        <img src="https://drive.google.com/uc?id=1olp9RFtfqiv_Qptp_Eo2QK-Iv0zWnaPv" alt="Architecture Image 7">
+        <img src="https://drive.google.com/uc?id=1UPIm61n-ALmg4pYQ_Atw0ih7Wm4_fY8u" alt="Architecture Image 8">
+        <img src="https://drive.google.com/uc?id=1xl8tJzItXZx6qO8f1QTM43AQrbZjaZlS" alt="Architecture Image 9">
+        <img src="https://drive.google.com/uc?id=1-VtWmPQdjEyJ_XPSuZyFPG1XohWfy1V1" alt="Architecture Image 10">
+        <img src="https://drive.google.com/uc?id=1vMo3vczmQJ1U2ewzVDRrOs64sG4-pJ5D" alt="Architecture Image 11">
+        <img src="https://drive.google.com/uc?id=1ZQYXKv6uFSdWvdfp89auZRH3jNAmzCkN" alt="Architecture Image 12">
+        <img src="https://drive.google.com/uc?id=1XxnlyqWbGeKQxPG4NU8-cHoTRekWhl2R" alt="Architecture Image 13">
+        <img src="https://drive.google.com/uc?id=1IB0TLHKU7XeJWm0FfiD9TrRR8iwLKP7B" alt="Architecture Image 14">
+        <img src="https://drive.google.com/uc?id=1E11_0eRLDrFYOgbupNydE5J2CC98-A5W" alt="Architecture Image 15">
+        <img src="https://drive.google.com/uc?id=1semyKB39kg8HqscuqI3UtE7cqI5jj5RJ" alt="Architecture Image 16">
+        <img src="https://drive.google.com/uc?id=1VLnC6aZy7o_FZ8zXZYOSIs1ArfHg8li6" alt="Architecture Image 17">
+        <img src="https://drive.google.com/uc?id=1FwqaT12m3ghfa2x_Xq-EVrxiid6eSNmB" alt="Architecture Image 18">
+        <img src="https://drive.google.com/uc?id=1vhxh5MPdNHskp-GOQOivFwVQm4g-l-2j" alt="Architecture Image 19">
+        <img src="https://drive.google.com/uc?id=1BuCsezBS0zRd1mhnYvE1ed2CQ2aD4glJ" alt="Architecture Image 20">
+        <img src="https://drive.google.com/uc?id=1KnC_Kmu61OUk11ZZfl4DNXe8zwu47QhK" alt="Architecture Image 21">
+        <img src="https://drive.google.com/uc?id=1srrF0X92kLhp9aQUGyRm6Ds4R50-9pg8" alt="Architecture Image 22">
+        <img src="https://drive.google.com/uc?id=1mOob3C3C1_l4a3P99weXE8PAHLdJDaPh" alt="Architecture Image 23">
+        <img src="https://drive.google.com/uc?id=1QnUccjlRf9A3nFx9SUEtR8XAFZpX6OBE" alt="Architecture Image 24">
+        <img src="https://drive.google.com/uc?id=1Z-WtTf6s7KrgMdM0Qe_-WFMXPl_Yhdo2" alt="Architecture Image 25">
+        <img src="https://drive.google.com/uc?id=1LZxM5eTkdE0nbpk0Bc0Jm4MTGoSyzTjV" alt="Architecture Image 26">
+        <img src="https://drive.google.com/uc?id=1HRXliDgRjGrD3Yo9rGhzqluDSdyuJngX" alt="Architecture Image 27">
+        <img src="https://drive.google.com/uc?id=1uGOyPMvYOrE9roD0kYReGB36NBW2FPDA" alt="Architecture Image 28">
+        <img src="https://drive.google.com/uc?id=1mT72Ab0-W-4HIdr59B7PfCtgb-pYQzvU" alt="Architecture Image 29">
+        <img src="https://drive.google.com/uc?id=1M_lOBP5VLZfWZb9pu7RpBv6kh-0Kcv4R" alt="Architecture Image 30">
+        <img src="https://drive.google.com/uc?id=1gFdKtVZ1boApm8mTpQLltHeuCBmD4PNQ" alt="Architecture Image 31">
+        <img src="https://drive.google.com/uc?id=1LURlS71MLJPt_2n8XjEl5ssbST7V8aKH" alt="Architecture Image 32">
+        <img src="https://drive.google.com/uc?id=1oYv2Kdhk0BFPC_mRQz-5ytgTx-dZELu1" alt="Architecture Image 33">
+        <img src="https://drive.google.com/uc?id=1A9_AAhxGpTyy_3BhysynAWI14sTLGEzd" alt="Architecture Image 34">
+        <img src="https://drive.google.com/uc?id=1tVRPLmdP8v_Fv-PLGq82C9bx5gEInPh9" alt="Architecture Image 35">
+        <img src="https://drive.google.com/uc?id=1JnbtOxPRvOIGYHZ2GbmGwsA2bK84NMAx" alt="Architecture Image 36">
+        <img src="https://drive.google.com/uc?id=1Il8J-4Rh2_yyVQ4sb8T1AIj4doUauB1X" alt="Architecture Image 37">
+        <img src="https://drive.google.com/uc?id=1jqIzJ5wW3Y10n0zFLa2Zl02ayr6fsJ2Y" alt="Architecture Image 38">
+        <img src="https://drive.google.com/uc?id=1XWcHoFLmS9Um8g5IB53fpDoT3Kwpikp9" alt="Architecture Image 39">
+        <img src="https://drive.google.com/uc?id=1LkZTj54Qg7KCSKNRpF-sfIk5XZDJI_A2" alt="Architecture Image 40">
+        <img src="https://drive.google.com/uc?id=1hTW1Zo7aCe_ZxNz7lA9KNe4ZiyO3nYe1" alt="Architecture Image 41">
+        <img src="https://drive.google.com/uc?id=1A5u3uD7uhRC1-I5FWikQ0_O90xpy8RuJ" alt="Architecture Image 42">
+        <img src="https://drive.google.com/uc?id=1dTDoOly0eV7lyUI62ErsTyQrs0vGGl5e" alt="Architecture Image 43">
+        <img src="https://drive.google.com/uc?id=1o7cLGOF1x4H2x7zizXXwOoU2MbZ23is3" alt="Architecture Image 44">
+        <img src="https://drive.google.com/uc?id=1GNdjN-K2dfRB8sudH9fZcme6RCytUic6" alt="Architecture Image 45">
+        <img src="https://drive.google.com/uc?id=1uP-wpAOvEh8PKDlTKMZh6y7IwDfYeb8e" alt="Architecture Image 46">
+        <img src="https://drive.google.com/uc?id=1Ug-XicWGdZPb41qmsR_d3VyyNn_xb4ZJ" alt="Architecture Image 47">
+        <img src="https://drive.google.com/uc?id=1FVswdrDC-6jxFBZXlkk2YDTTS1G7sN9M" alt="Architecture Image 48">
+        <img src="https://drive.google.com/uc?id=1Ri26rJ5BaqqT3NQ-33HRa1r_b1qF-nHI" alt="Architecture Image 49">
+        <img src="https://drive.google.com/uc?id=1rfUz1Etfi_OwBWECdB_l4YFxE60pX5OV" alt="Architecture Image 50">
+    </div>
 </body>
 </html>
