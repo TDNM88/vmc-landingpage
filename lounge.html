@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,9 +19,10 @@
             padding: 5px;
         }
 
-.container {
-    background: url(images/header-bg2.png) no-repeat center center / cover;
-}
+        .container {
+            background: url(images/header-bg2.png) no-repeat center center / cover;
+        }
+
         .module {
             margin-bottom: 40px;
             padding: 20px;
@@ -32,119 +33,178 @@
             flex-direction: column;
             align-items: center;
         }
+        
         .module h2 {
             margin-top: 0;
             text-align: center;
         }
+
         gradio-app {
             width: 100%;
             max-width: 800px;
         }
         
         /* Header styling */
-header {
-    background: url('images/header-bg.png') no-repeat center center/cover;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    padding: 5px 5px;
-    position: relative;
-    z-index: 1000;
-}
+        header {
+            background: url('images/header-bg.png') no-repeat center center/cover;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            padding: 5px 5px;
+            position: relative;
+            z-index: 1000;
+        }
 
-/* General styles for header buttons */
-.header .button {
-  padding: 6px 10px; /* Decrease padding */
-  font-size: 12px;   /* Decrease font size */
-}
+        /* General styles for header buttons */
+        .header .button {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
 
-/* Specific styles for mobile screens */
-@media (max-width: 600px) {
-  .header .button {
-    padding: 4px 6px; /* Further decrease padding */
-    font-size: 10px;  /* Further decrease font size */
-  }
+        /* Specific styles for mobile screens */
+        @media (max-width: 600px) {
+            .header .button {
+                padding: 4px 6px;
+                font-size: 10px;
+            }
 
-  .header {
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically on mobile */
-    align-items: center;
-  }
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-  .header .button {
-    margin: 4px 0; /* Add margin for spacing between buttons */
-  }
-}
+            .header .button {
+                margin: 4px 0;
+            }
+        }
 
-header nav ul {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
+        header nav ul {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
 
-header nav ul li {
-    margin: 0 10px;
-    position: relative;
-}
+        header nav ul li {
+            margin: 0 10px;
+            position: relative;
+        }
 
-header nav ul li a {
-    background: #fff;
-    color: #2c3e50;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    position: relative;
-}
+        header nav ul li a {
+            background: #fff;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
 
-header nav ul li a i {
-    font-size: 1.5em;
-}
+        header nav ul li a i {
+            font-size: 1.5em;
+        }
 
-header nav ul li a span {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c3e50;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
+        header nav ul li a span {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
 
-header nav ul li a:hover span {
-    opacity: 1;
-    visibility: visible;
-    bottom: -40px;
-}
+        header nav ul li a:hover span {
+            opacity: 1;
+            visibility: visible;
+            bottom: -40px;
+        }
 
-header nav ul li a:hover {
-    background: #34495e;
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
+        header nav ul li a:hover {
+            background: #34495e;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
 
-/* Footer styling */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
+        /* Footer styling */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
 
-footer p {
-    margin: 0;
-}
+        footer p {
+            margin: 0;
+        }
+
+        /* Tensor Art section */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .model-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .model-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .model-card h3 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+        }
+
+        .badge {
+            background-color: #00f;
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .model-info {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .model-button {
+            background-color: #fff;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .model-button:hover {
+            background-color: #ffa500;
+            color: #fff;
+        }
 
     </style>
 </head>
@@ -162,11 +222,94 @@ footer p {
     </header>
 
     <main>
-<body>
-    <div class="container">
-        <div class="module">
+        <div class="container">
+            <!-- Tensor Art Section -->
+            <div class="model-grid">
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 40K</div>
+                    <img src="https://tensor.art/assets/path-to-image1.jpg" alt="Model 1 Image">
+                    <h3>FLUX-WONDER-BEAUTY-TDNM-V1</h3>
+                    <div class="model-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                    <a href="https://tensor.art/models/761380977525273387/FLUX-WONDER-BEAUTY-TDNM-V1" class="model-button">TRY NOW</a>
+                </div>
+
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 35K</div>
+                    <img src="https://tensor.art/assets/path-to-image2.jpg" alt="Model 2 Image">
+                    <h3>FLUX-TA-Realistic-Legendary</h3>
+                    <div class="model-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                    <a href="https://tensor.art/models/770694094415489962/FLUX-TA-Realistic-Legendary" class="model-button">TRY NOW</a>
+                </div>
+
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 50K</div>
+                    <img src="https://tensor.art/assets/path-to-image3.jpg" alt="Model 3 Image">
+                    <h3>FLUX-Enhanced-All-Realistic</h3>
+                    <div class="model-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                    <a href="https://tensor.art/models/766419665653268679/FLUX-Enhanced-All-Realistic" class="model-button">TRY NOW</a>
+                </div>
+
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 30K</div>
+                    <img src="https://tensor.art/assets/path-to-image4.jpg" alt="Model 4 Image">
+                    <h3>FLUX-SUGAR-BABE-beta-2.0</h3>
+                    <div class="model-info">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <a href="https://tensor.art/models/766419665653268680/FLUX-SUGAR-BABE-beta-2.0" class="model-button">TRY NOW</a>
+                </div>
+
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 45K</div>
+                    <img src="https://tensor.art/assets/path-to-image5.jpg" alt="Model 5 Image">
+                    <h3>FLUX-MIDNIGHT-DREAM</h3>
+                    <div class="model-info">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                    <a href="https://tensor.art/models/766419665653268681/FLUX-MIDNIGHT-DREAM" class="model-button">TRY NOW</a>
+                </div>
+
+                <div class="model-card">
+                    <div class="badge">TensorArt Runs: 60K</div>
+                    <img src="https://tensor.art/assets/path-to-image6.jpg" alt="Model 6 Image">
+                    <h3>FLUX-ARTISTIC-WONDER</h3>
+                    <div class="model-info">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    <a href="https://tensor.art/models/766419665653268682/FLUX-ARTISTIC-WONDER" class="model-button">TRY NOW</a>
+                </div>
+            <div class="module">
             <h2>TDNM MODEL LOUNGE</h2>
         <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.44.0/gradio.js"></script>
+            <gradio-app src="https://tdn-m-tams-image-gen.hf.space"></gradio-app>
+        </div>
+    </div>
+<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js"></script>
+      <script>
+          new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7334554882378104833',
+            },
+            componentProps: {
+              title: 'TDNM CUSTOMER SERVICES',
+              icon: '/images/apps/247.png',
+              layout: 'mobile',
+            },
+          });
+      </script>
+</body>
+<footer>
+        <div class="container.footer">
+            <p>&copy; 2024 TDN-M. All rights reserved.</p>
+        </div>
+</footer>
+</html>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.44.0/gradio.js"></script>
             <gradio-app src="https://tdn-m-tams-image-gen.hf.space"></gradio-app>
         </div>
     </div>
